@@ -13,21 +13,83 @@ This guide explains how developers can use the existing test suite to implement 
 
 ## 🚀 Getting Started
 
-### 1. Setup Development Environment
+### 1. Integration with Main Repositories
+
+This messaging epic will be implemented in the main SkilledUp.Life repositories:
+- **Frontend**: https://github.com/skilleduplife/frontend
+- **Backend**: https://github.com/skilleduplife/backend
+
+#### For Frontend Developers:
 
 ```bash
-# Clone the repository
-git clone https://github.com/jerryagenyi/sul-messaging-epic.git
-cd sul-messaging-epic
+# In your frontend repository
+cd /path/to/skilleduplife/frontend
+
+# Create messaging epic directory
+mkdir -p src/features/messaging
+mkdir -p tests/messaging
+
+# Copy test suite from specification repository
+git clone https://github.com/jerryagenyi/sul-messaging-epic.git temp-specs
+cp -r temp-specs/tests/* tests/messaging/
+cp temp-specs/requirements.txt tests/messaging/
+cp temp-specs/pytest.ini tests/messaging/
+rm -rf temp-specs
 
 # Install test dependencies
+cd tests/messaging
 pip install -r requirements.txt
 
 # Verify test setup
 python run_tests.py --smoke
 ```
 
+#### For Backend Developers:
+
+```bash
+# In your backend repository
+cd /path/to/skilleduplife/backend
+
+# Create messaging API directory
+mkdir -p src/api/messaging
+mkdir -p tests/messaging
+
+# Copy relevant test specifications
+git clone https://github.com/jerryagenyi/sul-messaging-epic.git temp-specs
+cp -r temp-specs/docs/* docs/messaging/
+cp temp-specs/TDD_DEVELOPMENT_GUIDE.md docs/
+rm -rf temp-specs
+
+# The frontend Selenium tests will validate your API endpoints
+```
+
 **Expected Result**: All tests should FAIL (🔴 RED phase) - this is correct!
+
+## 🎨 Test Coverage Scope
+
+### ✅ **What This Test Suite Covers (Functional Testing):**
+- **Element Presence**: Buttons, inputs, forms, containers exist
+- **User Interactions**: Click, type, navigate, send messages
+- **Functionality**: Message sending, search, permissions, settings
+- **Content Validation**: Text appears, messages are delivered
+- **Accessibility**: Keyboard navigation, screen reader support
+- **Error Handling**: Network failures, validation errors
+- **Cross-browser Compatibility**: Chrome (extensible to others)
+
+### ❌ **What's NOT Covered (Visual Design Testing):**
+- **Visual Appearance**: Colors, fonts, spacing, layouts
+- **Design Consistency**: Brand guidelines, style guide compliance
+- **Visual Regression**: Screenshot comparison over time
+- **Pixel-Perfect Design**: Exact positioning, alignment
+- **Animation/Transitions**: Smooth transitions, loading states
+- **Responsive Design Details**: Exact breakpoint behavior
+
+### 🔧 **To Add Visual Design Testing:**
+Consider extending with:
+- **Percy** or **Applitools** for visual regression testing
+- **Storybook** integration for component visual testing
+- **Chromatic** for UI component testing
+- **Screenshot comparison** tests in CI/CD pipeline
 
 ### 2. Understanding Test Structure
 
@@ -44,88 +106,117 @@ Each test file corresponds to a feature from the test matrix:
 
 ## 📋 Development Roadmap
 
-### Phase 1: Core Infrastructure (Week 1-2)
+### Phase 1: Permission System & UI Foundation
 
-#### Step 1: User Authentication & Roles
+#### Step 1: Role-Based Access Control (Frontend Focus)
 ```bash
 # Run permission tests to see what's needed
 python run_tests.py --test test_messaging_permissions.py
 ```
 
-**Implement:**
-- User login system
-- Role-based access control (System Admin, PRO Volunteer, Volunteer, Company)
-- Session management
+**Frontend Implementation:**
+- Role-based UI component rendering
+- Permission checking before showing message buttons
+- Integration with existing authentication system
+- User role context management
+
+**Backend Implementation:**
+- API endpoints for permission validation
+- Role-based middleware for messaging routes
+- Permission checking service
 
 **Key Test:** `test_messaging_permissions_enforced()`
 
-#### Step 2: Basic UI Structure
+**🔐 Authentication Note:** This epic assumes authentication is already handled by the main SkilledUp.Life system. We're implementing permission checks for messaging features based on the current authenticated user's role (System Admin, PRO Volunteer, Volunteer, Company). The tests validate that the correct messaging permissions are enforced for each role.
+
+#### Step 2: Profile Integration & Message Buttons
 ```bash
 # Run profile button tests
 python run_tests.py --test test_profile_message_button.py
 ```
 
-**Implement:**
-- User profile pages
-- Message button placement
-- Basic navigation
+**Frontend Implementation:**
+- Add message buttons to existing profile components
+- Button visibility based on user permissions
+- Navigation to messaging interface
+- Integration with existing profile pages
 
 **Key Test:** `test_profile_message_button()`
 
-### Phase 2: Core Messaging (Week 3-4)
+### Phase 2: Core Messaging Functionality
 
-#### Step 3: Messaging Interface
+#### Step 3: Messaging Interface & Real-time Communication
 ```bash
 # Run messaging interface tests
 python run_tests.py --test test_messaging_interface.py
 ```
 
-**Implement:**
-- Message input/output interface
-- Send/receive functionality
+**Frontend Implementation:**
+- Message input/output components
+- Real-time message updates (WebSocket/SSE)
 - Message history display
-- Real-time updates
+- Send/receive functionality
+
+**Backend Implementation:**
+- Message API endpoints (POST /api/messages, GET /api/messages/:conversationId)
+- Real-time message broadcasting
+- Message persistence and retrieval
 
 **Key Test:** `test_messaging_interface()`
 
-#### Step 4: Admin Settings
+#### Step 4: Admin Settings Management
 ```bash
 # Run admin settings tests
 python run_tests.py --test test_admin_messaging_settings.py
 ```
 
-**Implement:**
-- Admin dashboard
-- Messaging permission settings
-- Settings persistence
+**Frontend Implementation:**
+- Admin settings dashboard component
+- Settings form with toggles and validation
+- Real-time settings updates
+
+**Backend Implementation:**
+- Admin settings API endpoints
+- Settings persistence and validation
+- Permission enforcement based on settings
 
 **Key Test:** `test_admin_messaging_settings()`
 
-### Phase 3: Advanced Features (Week 5-6)
+### Phase 3: Advanced Features
 
-#### Step 5: Search Functionality
+#### Step 5: Message Search & Filtering
 ```bash
 # Run search tests
 python run_tests.py --test test_message_search.py
 ```
 
-**Implement:**
-- Message search across conversations
-- Search result highlighting
-- Special character handling
+**Frontend Implementation:**
+- Search input component
+- Search results display with highlighting
+- Filter and sort functionality
+
+**Backend Implementation:**
+- Search API with full-text search capabilities
+- Search indexing and optimization
+- Advanced search filters
 
 **Key Test:** `test_message_search()`
 
-#### Step 6: Conversation Organization
+#### Step 6: Conversation Organization & Grouping
 ```bash
 # Run grouping tests
 python run_tests.py --test test_conversation_grouping.py
 ```
 
-**Implement:**
-- Conversation list
+**Frontend Implementation:**
+- Conversation list component
 - Message grouping by participant
-- Sorting and organization
+- Sorting and organization UI
+
+**Backend Implementation:**
+- Conversation management API
+- Message grouping logic
+- Conversation metadata handling
 
 **Key Test:** `test_conversation_grouping()`
 
