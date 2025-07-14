@@ -179,26 +179,24 @@ jobs:
       with:
         sarif_file: 'trivy-results.sarif'
 
-  deploy-docs:
+  test-summary:
     runs-on: ubuntu-latest
-    name: Deploy Documentation
-    needs: [unit-tests, integration-tests]
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    
+    name: Test Summary
+    needs: [unit-tests, integration-tests, security-scan]
+    if: always()
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        
-    - name: Generate documentation site
+    - name: Test Results Summary
       run: |
-        echo "Documentation deployment would happen here"
-        echo "This could include generating static sites from markdown"
-        
-    - name: Deploy to GitHub Pages (placeholder)
-      run: |
-        echo "GitHub Pages deployment would be configured here"
+        echo "=== MESSAGING EPIC TEST SUMMARY ==="
         echo "Repository: https://github.com/jerryagenyi/sul-messaging-epic"
+        echo "Branch: ${{ github.ref_name }}"
+        echo "Commit: ${{ github.sha }}"
+        echo ""
+        echo "✅ Linting and Validation: ${{ needs.lint-and-validate.result }}"
+        echo "✅ Unit Tests: ${{ needs.unit-tests.result }}"
+        echo "✅ Integration Tests (Selenium): ${{ needs.integration-tests.result }}"
+        echo "✅ Security Scan: ${{ needs.security-scan.result }}"
+        echo ""
+        echo "🧪 TDD Status: Tests ready for development"
+        echo "📋 Next Steps: Implement features to make tests pass"
