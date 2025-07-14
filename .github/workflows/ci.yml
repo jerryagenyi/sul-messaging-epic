@@ -1,0 +1,204 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+    name: Lint and Validate Documentation
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        npm install -g markdownlint-cli
+        npm install -g @cucumber/cucumber
+        
+    - name: Lint Markdown files
+      run: |
+        markdownlint docs/**/*.md README.md Specification_Messaging.md || true
+        
+    - name: Validate Gherkin syntax
+      run: |
+        npx cucumber-js --dry-run docs/gherkin/**/*.feature || true
+        
+    - name: Check file structure
+      run: |
+        echo "Checking repository structure..."
+        ls -la
+        echo "Documentation structure:"
+        find docs -type f -name "*.md" | head -20
+
+  setup-test-environment:
+    runs-on: ubuntu-latest
+    name: Setup Test Environment
+    needs: lint-and-validate
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install selenium pytest pytest-html pytest-xvfb webdriver-manager
+        pip install requests beautifulsoup4 faker
+        
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@latest
+      
+    - name: Setup ChromeDriver
+      uses: nanasess/setup-chromedriver@master
+      
+    - name: Verify test setup
+      run: |
+        python --version
+        pip list | grep selenium
+        chromedriver --version
+        google-chrome --version
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    needs: setup-test-environment
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install selenium pytest pytest-html pytest-xvfb webdriver-manager
+        pip install requests beautifulsoup4 faker
+        
+    - name: Run unit tests
+      run: |
+        if [ -d "tests/unit" ]; then
+          python -m pytest tests/unit/ -v --html=reports/unit-test-report.html --self-contained-html
+        else
+          echo "No unit tests found, creating placeholder..."
+          mkdir -p tests/unit
+          echo "# Unit tests will be implemented here" > tests/unit/README.md
+        fi
+        
+    - name: Upload unit test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: unit-test-results
+        path: reports/
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    name: Integration Tests (Selenium)
+    needs: setup-test-environment
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install selenium pytest pytest-html pytest-xvfb webdriver-manager
+        pip install requests beautifulsoup4 faker
+        
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@latest
+      
+    - name: Setup ChromeDriver
+      uses: nanasess/setup-chromedriver@master
+      
+    - name: Run Selenium tests
+      run: |
+        export DISPLAY=:99
+        Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+        if [ -d "tests/selenium" ]; then
+          python -m pytest tests/selenium/ -v --html=reports/selenium-test-report.html --self-contained-html
+        else
+          echo "Selenium tests directory not found, will be created in next step"
+        fi
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: selenium-test-results
+        path: reports/
+
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Scan
+    needs: lint-and-validate
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  deploy-docs:
+    runs-on: ubuntu-latest
+    name: Deploy Documentation
+    needs: [unit-tests, integration-tests]
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Generate documentation site
+      run: |
+        echo "Documentation deployment would happen here"
+        echo "This could include generating static sites from markdown"
+        
+    - name: Deploy to GitHub Pages (placeholder)
+      run: |
+        echo "GitHub Pages deployment would be configured here"
+        echo "Repository: https://github.com/jerryagenyi/sul-messaging-epic"
