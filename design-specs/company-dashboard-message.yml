@@ -1,0 +1,164 @@
+# Design Specifications extracted from Company Dashboard - Message.svg
+# This file defines testable design specifications based on your Figma design
+
+company_dashboard_message:
+  # Layout specifications
+  layout:
+    canvas_width: "1520px"
+    canvas_height: "980px"
+    main_content_width: "1440px"
+    main_content_height: "900px"
+    sidebar_width: "84px"
+    
+  # Color palette from Figma design
+  colors:
+    primary_blue: "#004AAD"
+    background_white: "#FEFFFE"
+    text_primary: "#1F2937"
+    text_secondary: "#4B5563"
+    border_gray: "#d1d9e0"
+    
+  # Typography specifications
+  typography:
+    volunteer_opportunities_text:
+      font_family: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto"
+      font_size: "14px"
+      color: "#1F2937"
+      
+    post_opportunity_button:
+      font_family: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto"
+      font_size: "14px"
+      font_weight: "500"
+      color: "#004AAD"
+      
+  # Component specifications
+  components:
+    # Top navigation bar
+    top_nav:
+      height: "64px"
+      background: "white"
+      position: "fixed"
+      top: "0"
+      
+    # Logo/brand area
+    brand_logo:
+      position: "x: 136, y: 41"
+      width: "42px"
+      height: "42px"
+      border_radius: "3.81818px"
+      background: "#004AAD"
+      
+    # Post Opportunity button (main CTA)
+    post_opportunity_button:
+      position: "x: 1030, y: 41"
+      width: "233px"
+      height: "41px"
+      border_radius: "11.5px"
+      background: "#FEFFFE"
+      border: "1px solid #004AAD"
+      text_color: "#004AAD"
+      
+    # Plus icon in button
+    plus_icon:
+      position: "x: 1066, y: 54.25"
+      size: "15px"
+      color: "#004AAD"
+      
+    # Sidebar navigation
+    sidebar:
+      width: "84px"
+      height: "836px"
+      background: "#FEFFFE"
+      position: "left"
+      
+    # Profile avatar in sidebar
+    profile_avatar:
+      position: "x: 82, y: 148"
+      radius: "18px"
+      type: "circular"
+      
+    # Navigation icons in sidebar
+    nav_icons:
+      grid_icon:
+        position: "x: 75-90, y: 209-226"
+        size: "15px"
+        color: "#1F2937"
+        
+      security_icon:
+        position: "x: 75-90, y: 274-290"
+        size: "16px"
+        color: "#1F2937"
+        
+      message_icon:
+        position: "x: 75-90, y: 336-356"
+        size: "20px"
+        color: "#1F2937"
+        
+  # Interactive states
+  states:
+    post_opportunity_button:
+      default:
+        background: "#FEFFFE"
+        border: "1px solid #004AAD"
+        text_color: "#004AAD"
+      hover:
+        background: "#f0f7ff"
+        border: "1px solid #004AAD"
+        text_color: "#004AAD"
+      active:
+        background: "#e6f3ff"
+        border: "1px solid #004AAD"
+        text_color: "#004AAD"
+        
+    nav_icons:
+      default:
+        color: "#1F2937"
+        opacity: "0.7"
+      hover:
+        color: "#004AAD"
+        opacity: "1.0"
+      active:
+        color: "#004AAD"
+        opacity: "1.0"
+        background: "#f0f7ff"
+        
+  # Spacing and positioning
+  spacing:
+    top_nav_padding: "16px"
+    sidebar_icon_spacing: "18px"
+    button_padding: "12px 16px"
+    content_margin: "40px"
+    
+  # Responsive breakpoints (inferred)
+  responsive:
+    desktop: "1440px+"
+    tablet: "768px - 1439px"
+    mobile: "< 768px"
+    
+  # Accessibility requirements
+  accessibility:
+    min_contrast_ratio: "4.5:1"
+    focus_indicator: "2px solid #004AAD"
+    keyboard_navigation: "tab_order_logical"
+    
+# Test scenarios based on this design
+test_scenarios:
+  - name: "Company dashboard loads with correct layout"
+    description: "Verify main layout matches Figma design"
+    elements: ["top_nav", "sidebar", "main_content"]
+    
+  - name: "Post Opportunity button styling"
+    description: "Verify button matches design specifications"
+    elements: ["post_opportunity_button", "plus_icon"]
+    
+  - name: "Navigation icons are properly positioned"
+    description: "Verify sidebar icons match Figma positions"
+    elements: ["nav_icons"]
+    
+  - name: "Color scheme consistency"
+    description: "Verify all colors match design system"
+    elements: ["primary_blue", "background_white", "text_colors"]
+    
+  - name: "Interactive states work correctly"
+    description: "Verify hover and active states"
+    elements: ["button_states", "icon_states"]

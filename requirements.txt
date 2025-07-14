@@ -26,3 +26,11 @@ pytest-bdd==7.0.0
 
 # Performance testing (optional)
 locust==2.17.0
+
+# Visual testing and image comparison
+Pillow==10.1.0
+opencv-python==4.8.1.78
+scikit-image==0.21.0
+
+# YAML parsing for design specifications
+PyYAML==6.0.1
