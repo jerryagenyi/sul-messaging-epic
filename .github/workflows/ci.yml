@@ -179,24 +179,139 @@ jobs:
       with:
         sarif_file: 'trivy-results.sarif'
 
-  test-summary:
+  deploy-docs:
     runs-on: ubuntu-latest
-    name: Test Summary
-    needs: [unit-tests, integration-tests, security-scan]
-    if: always()
+    name: Deploy Documentation
+    needs: [unit-tests, integration-tests]
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
     steps:
-    - name: Test Results Summary
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install documentation tools
       run: |
-        echo "=== MESSAGING EPIC TEST SUMMARY ==="
-        echo "Repository: https://github.com/jerryagenyi/sul-messaging-epic"
-        echo "Branch: ${{ github.ref_name }}"
-        echo "Commit: ${{ github.sha }}"
-        echo ""
-        echo "✅ Linting and Validation: ${{ needs.lint-and-validate.result }}"
-        echo "✅ Unit Tests: ${{ needs.unit-tests.result }}"
-        echo "✅ Integration Tests (Selenium): ${{ needs.integration-tests.result }}"
-        echo "✅ Security Scan: ${{ needs.security-scan.result }}"
-        echo ""
-        echo "🧪 TDD Status: Tests ready for development"
-        echo "📋 Next Steps: Implement features to make tests pass"
+        npm install -g @mermaid-js/mermaid-cli
+        npm install -g markdown-to-html-cli
+
+    - name: Create documentation site
+      run: |
+        mkdir -p docs-site
+
+        # Create index page
+        cat > docs-site/index.html << 'EOF'
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Messaging Epic Documentation</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 40px; }
+                .header { background: #f6f8fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+                .nav { background: #0969da; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+                .nav a { color: white; text-decoration: none; margin-right: 20px; }
+                .section { margin-bottom: 30px; padding: 20px; border: 1px solid #d1d9e0; border-radius: 8px; }
+                .badge { background: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1>🚀 Messaging Epic Documentation</h1>
+                <p>Comprehensive documentation for the SkilledUp.Life messaging system</p>
+                <span class="badge">TDD Ready</span>
+            </div>
+
+            <div class="nav">
+                <a href="#overview">Overview</a>
+                <a href="#specifications">Specifications</a>
+                <a href="#tests">Test Suite</a>
+                <a href="#development">Development Guide</a>
+                <a href="test-reports/">Test Reports</a>
+            </div>
+
+            <div class="section" id="overview">
+                <h2>📋 Project Overview</h2>
+                <p>This project implements a comprehensive messaging system with role-based permissions, admin controls, and advanced features like search and conversation grouping.</p>
+                <ul>
+                    <li><strong>Repository:</strong> <a href="https://github.com/jerryagenyi/sul-messaging-epic">sul-messaging-epic</a></li>
+                    <li><strong>Test Coverage:</strong> 6 core features with comprehensive Selenium tests</li>
+                    <li><strong>Development Approach:</strong> Test-Driven Development (TDD)</li>
+                </ul>
+            </div>
+
+            <div class="section" id="specifications">
+                <h2>📖 Specifications</h2>
+                <ul>
+                    <li><a href="specs/messaging-epic/">Feature Specifications</a></li>
+                    <li><a href="gherkin/messaging-epic/">Gherkin Test Scenarios</a></li>
+                    <li><a href="testing/messaging-epic/">Test Matrix</a></li>
+                </ul>
+            </div>
+
+            <div class="section" id="tests">
+                <h2>🧪 Test Suite</h2>
+                <p>Comprehensive Selenium-based test suite covering all messaging functionality:</p>
+                <ul>
+                    <li>✅ Role-based Permission Tests</li>
+                    <li>✅ Admin Settings Management</li>
+                    <li>✅ Profile Message Buttons</li>
+                    <li>✅ Core Messaging Interface</li>
+                    <li>✅ Message Search Functionality</li>
+                    <li>✅ Conversation Grouping</li>
+                </ul>
+                <p><a href="test-reports/">View Latest Test Reports →</a></p>
+            </div>
+
+            <div class="section" id="development">
+                <h2>👨‍💻 Development Guide</h2>
+                <p>Ready to start development? Follow our TDD approach:</p>
+                <ol>
+                    <li>🔴 <strong>RED:</strong> Run tests (they fail initially)</li>
+                    <li>🟢 <strong>GREEN:</strong> Implement minimal code to pass tests</li>
+                    <li>🔵 <strong>REFACTOR:</strong> Improve code while keeping tests passing</li>
+                </ol>
+                <p><a href="TDD_DEVELOPMENT_GUIDE.html">View Complete Development Guide →</a></p>
+            </div>
+        </body>
+        </html>
+        EOF
+
+    - name: Convert markdown files to HTML
+      run: |
+        # Convert main documentation files
+        if [ -f "README.md" ]; then
+          markdown-to-html README.md -o docs-site/README.html
+        fi
+
+        if [ -f "TDD_DEVELOPMENT_GUIDE.md" ]; then
+          markdown-to-html TDD_DEVELOPMENT_GUIDE.md -o docs-site/TDD_DEVELOPMENT_GUIDE.html
+        fi
+
+        # Copy documentation structure
+        cp -r docs docs-site/ 2>/dev/null || true
+
+        # Copy test reports if they exist
+        mkdir -p docs-site/test-reports
+        cp -r reports/* docs-site/test-reports/ 2>/dev/null || true
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: './docs-site'
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
