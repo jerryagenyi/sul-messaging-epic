@@ -1,0 +1,239 @@
+# SkilledUp.Life Design System
+# Global design tokens that apply across all modules
+# This serves as the baseline for all visual testing
+
+skilledup_design_system:
+  
+  # Brand Colors (Primary Palette)
+  colors:
+    primary:
+      blue_primary: "#004AAD"      # Main brand blue
+      blue_secondary: "#0066CC"    # Lighter blue for hover states
+      blue_light: "#f0f7ff"       # Very light blue for backgrounds
+      
+    neutral:
+      white: "#FEFFFE"             # Pure white
+      gray_50: "#f9fafb"           # Lightest gray
+      gray_100: "#f3f4f6"          # Light gray backgrounds
+      gray_200: "#e5e7eb"          # Border gray
+      gray_300: "#d1d9e0"          # Medium border
+      gray_400: "#9ca3af"          # Disabled text
+      gray_500: "#6b7280"          # Secondary text
+      gray_600: "#4b5563"          # Primary text light
+      gray_700: "#374151"          # Primary text
+      gray_800: "#1f2937"          # Dark text
+      gray_900: "#111827"          # Darkest text
+      
+    semantic:
+      success: "#10b981"           # Green for success states
+      warning: "#f59e0b"           # Orange for warnings
+      error: "#ef4444"             # Red for errors
+      info: "#3b82f6"              # Blue for info
+      
+  # Typography Scale
+  typography:
+    font_families:
+      primary: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+      monospace: "'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace"
+      
+    font_sizes:
+      xs: "12px"                   # Small labels, captions
+      sm: "14px"                   # Body text, buttons
+      base: "16px"                 # Default body text
+      lg: "18px"                   # Large body text
+      xl: "20px"                   # Small headings
+      "2xl": "24px"                # Medium headings
+      "3xl": "30px"                # Large headings
+      "4xl": "36px"                # Extra large headings
+      
+    font_weights:
+      normal: "400"
+      medium: "500"
+      semibold: "600"
+      bold: "700"
+      
+    line_heights:
+      tight: "1.25"                # Headings
+      normal: "1.5"                # Body text
+      relaxed: "1.75"              # Large text blocks
+      
+  # Spacing Scale (based on 4px grid)
+  spacing:
+    px: "1px"
+    "0.5": "2px"
+    "1": "4px"
+    "1.5": "6px"
+    "2": "8px"
+    "2.5": "10px"
+    "3": "12px"
+    "3.5": "14px"
+    "4": "16px"
+    "5": "20px"
+    "6": "24px"
+    "7": "28px"
+    "8": "32px"
+    "10": "40px"
+    "12": "48px"
+    "16": "64px"
+    "20": "80px"
+    "24": "96px"
+    
+  # Border Radius Scale
+  border_radius:
+    none: "0px"
+    sm: "2px"
+    default: "4px"
+    md: "6px"
+    lg: "8px"
+    xl: "12px"
+    "2xl": "16px"
+    "3xl": "24px"
+    full: "9999px"                # For circular elements
+    
+  # Shadow Scale
+  shadows:
+    sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
+    default: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)"
+    md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+    lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+    xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+    
+  # Component Standards
+  components:
+    
+    # Global Header
+    header:
+      height: "64px"
+      background: "colors.neutral.white"
+      border_bottom: "1px solid colors.neutral.gray_200"
+      padding: "spacing.4"
+      
+    # Global Footer  
+    footer:
+      background: "colors.neutral.gray_50"
+      padding: "spacing.8 spacing.4"
+      border_top: "1px solid colors.neutral.gray_200"
+      
+    # Buttons
+    buttons:
+      primary:
+        background: "colors.primary.blue_primary"
+        color: "colors.neutral.white"
+        padding: "spacing.2 spacing.4"
+        border_radius: "border_radius.md"
+        font_size: "typography.font_sizes.sm"
+        font_weight: "typography.font_weights.medium"
+        height: "40px"
+        
+        hover:
+          background: "colors.primary.blue_secondary"
+          
+        active:
+          background: "colors.primary.blue_primary"
+          transform: "scale(0.98)"
+          
+        disabled:
+          background: "colors.neutral.gray_300"
+          color: "colors.neutral.gray_500"
+          cursor: "not-allowed"
+          
+      secondary:
+        background: "colors.neutral.white"
+        color: "colors.primary.blue_primary"
+        border: "1px solid colors.primary.blue_primary"
+        padding: "spacing.2 spacing.4"
+        border_radius: "border_radius.md"
+        
+        hover:
+          background: "colors.primary.blue_light"
+          
+    # Form Elements
+    forms:
+      input:
+        height: "40px"
+        padding: "spacing.2 spacing.3"
+        border: "1px solid colors.neutral.gray_300"
+        border_radius: "border_radius.md"
+        font_size: "typography.font_sizes.sm"
+        
+        focus:
+          border_color: "colors.primary.blue_primary"
+          box_shadow: "0 0 0 3px rgba(0, 74, 173, 0.1)"
+          
+        error:
+          border_color: "colors.semantic.error"
+          
+      label:
+        font_size: "typography.font_sizes.sm"
+        font_weight: "typography.font_weights.medium"
+        color: "colors.neutral.gray_700"
+        margin_bottom: "spacing.1"
+        
+    # Cards
+    card:
+      background: "colors.neutral.white"
+      border: "1px solid colors.neutral.gray_200"
+      border_radius: "border_radius.lg"
+      padding: "spacing.6"
+      box_shadow: "shadows.sm"
+      
+    # Navigation
+    navigation:
+      sidebar_width: "84px"
+      sidebar_expanded_width: "240px"
+      nav_item_height: "48px"
+      nav_item_padding: "spacing.3"
+      
+  # Layout Standards
+  layout:
+    max_width: "1440px"           # Maximum content width
+    container_padding: "spacing.4" # Default container padding
+    section_spacing: "spacing.16"  # Space between major sections
+    
+    breakpoints:
+      sm: "640px"                 # Mobile landscape
+      md: "768px"                 # Tablet
+      lg: "1024px"                # Desktop
+      xl: "1280px"                # Large desktop
+      "2xl": "1536px"             # Extra large
+      
+  # Animation Standards
+  animations:
+    duration:
+      fast: "150ms"
+      normal: "300ms"
+      slow: "500ms"
+      
+    easing:
+      ease_in: "cubic-bezier(0.4, 0, 1, 1)"
+      ease_out: "cubic-bezier(0, 0, 0.2, 1)"
+      ease_in_out: "cubic-bezier(0.4, 0, 0.2, 1)"
+      
+  # Accessibility Standards
+  accessibility:
+    min_contrast_ratio: "4.5:1"
+    focus_ring: "2px solid colors.primary.blue_primary"
+    focus_ring_offset: "2px"
+    min_touch_target: "44px"      # Minimum touch target size
+    
+# Module-Specific Overrides
+# Each module can extend or override these base standards
+module_overrides:
+  messaging:
+    # Messaging-specific design tokens
+    colors:
+      message_bubble_sent: "colors.primary.blue_primary"
+      message_bubble_received: "colors.neutral.gray_100"
+      online_indicator: "colors.semantic.success"
+      
+    components:
+      message_bubble:
+        max_width: "70%"
+        padding: "spacing.3 spacing.4"
+        border_radius: "border_radius.xl"
+        margin_bottom: "spacing.2"
+        
+      message_input:
+        min_height: "40px"
+        max_height: "120px"
+        resize: "vertical"
