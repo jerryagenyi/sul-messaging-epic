@@ -1,5 +1,7 @@
 # ✅ Test Coverage Tracker – SkilledUp.Life Modules
 
+> **Live Tracker:** The most up-to-date version of this test coverage tracker is maintained in Google Sheets: [Test Coverage Tracker – SkilledUp.Life Modules (Live)](https://docs.google.com/spreadsheets/d/1q2xA4L0VjMm7GEi-NSbk-X55E4FXBHt9O2PLc0jlqhk/edit?usp=sharing)
+
 > 📝 **CHANGELOG**
 >| Date       | Change Description                | Author         |
 >|------------|-----------------------------------|----------------|
