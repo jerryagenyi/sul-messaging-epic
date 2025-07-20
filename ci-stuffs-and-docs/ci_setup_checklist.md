@@ -12,12 +12,8 @@
 
 ## ✅ 1. Linting & Formatting Setup
 
-- [ ] Install Prettier (if not installed):
-  ```bash
-  npm install --save-dev prettier
-  ```
-- [x] Check if Prettier is installed.
-- [ ] Create a Prettier config file (e.g. `.prettierrc`).
+- [x] Prettier is installed.
+- [x] Create a Prettier config file (e.g. `.prettierrc`).
 - [ ] Add Prettier script to `package.json`:
   ```json
   "format": "prettier --check src/"
@@ -36,20 +32,22 @@
 - [ ] Run `npm run format` and `npm run lint` locally to verify setup.
 - [ ] Confirm both scripts work and catch issues as expected.
 
-## ✅ 2. Ensure Lock File Exists
+## ✅ 2. Ensure Lock File Exists / Update After Dependency Changes
 
-- [ ] Check if `frontend/package-lock.json` exists
-- [ ] If not:
-  - Run: `npm install`
-  - Commit the generated `package-lock.json` to the repo
+- [x] `frontend/package-lock.json` exists.
+- [ ] After installing ESLint or any new dependency, run:
+  ```bash
+  npm install
+  ```
+  - Commit the updated `package-lock.json` to the repo if it changes.
 
 ## ✅ 3. Setup Workflow
 
 - [ ] Create this path:
   ```
-  frontend/.github/workflows/ci.yml
+  frontend/.github/workflows/ci-frontend.yml
   ```
-- [ ] Add the lint-only version of `ci.yml` initially (with echo placeholders for other jobs)
+- [ ] Add the lint-only version of `ci-frontend.yml` initially (with echo placeholders for other jobs)
 - [ ] Confirm it's committed to the correct path
 
 ## ✅ 4. Trigger Workflow at Least Once
@@ -71,7 +69,7 @@
   frontend/tests/unit/
   frontend/tests/e2e/
   ```
-- [ ] Replace placeholder `echo` in `ci.yml` with:
+- [ ] Replace placeholder `echo` in `ci-frontend.yml` with:
   ```bash
   npm run test:unit
   npx playwright test
