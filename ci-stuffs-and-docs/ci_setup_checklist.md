@@ -16,9 +16,75 @@
 - [ ] Check if Prettier is installed
 - [ ] Add these scripts to "scripts" in `package.json`:
   ```json
-  "lint": "eslint src/",
+  "lint": "eslint src/ --ext .js,.vue",
   "format": "prettier --check src/"
   ```
+
+---
+
+### 🧰 Option B — Install ESLint (Recommended Long-Term)
+If you want to do this right (recommended for professional-grade apps), then:
+
+#### 🛠️ Install ESLint
+From the `frontend/` folder, run:
+```bash
+npm install --save-dev eslint
+npx eslint --init
+```
+
+**During the interactive setup, choose:**
+| Prompt                                      | Recommended Answer                |
+|----------------------------------------------|-----------------------------------|
+| How would you like to use ESLint?            | To check syntax, find problems... |
+| What type of modules does your project use?  | JavaScript modules (import/export)|
+| Which framework does your project use?       | Vue.js                            |
+| Does your project use TypeScript?            | No (unless you are using it)      |
+| Where does your code run?                    | Browser                           |
+| How would you like to define a style?        | Use a popular style guide         |
+| Which style guide do you want to follow?     | Airbnb (or Standard)              |
+| What format for your config file?            | JSON or JavaScript                |
+| Install dependencies now?                    | ✅ Yes                            |
+
+This will:
+- Install ESLint and any required plugins
+- Create `.eslintrc.js` (or `.eslintrc.json`)
+- Let you run `npm run lint` if configured
+
+#### ➕ Pros:
+- Enforces syntax + logic rules
+- Detects potential bugs early
+
+#### 2. Add to package.json Scripts (if not already)
+```json
+"scripts": {
+  "lint": "eslint src/ --ext .js,.vue"
+}
+```
+Adjust `src/` if your code lives elsewhere.
+
+#### 3. Run ESLint Locally
+```bash
+npm run lint
+```
+If it returns warnings/errors, ESLint is working. Commit both `.eslintrc.*` and `package.json` (if changed).
+
+#### 4. ✅ You're Ready for CI!
+No need to update the ci-frontend.yml since it's already set up to use:
+```bash
+cd frontend
+npm run lint
+```
+
+---
+
+#### 🧠 TL;DR — What Should You Do Today?
+- Run `npx eslint --init` and accept recommended answers for Vue
+- Add `"lint": "eslint src/ --ext .js,.vue"` to package.json
+- Run `npm run lint` once
+- Commit `.eslintrc.*` and package.json
+- CI will now catch lint issues automatically
+
+---
 
 ## ✅ 2. Ensure Lock File Exists
 
