@@ -1,7 +1,7 @@
 # CI Pipeline for Backend (Laravel unit tests)
 # Repository: https://github.com/skilleduplife/backend
 # This is the 'Model & Controller' in the MVC architecture, exposing APIs for the frontend.
-# Place this file at .github/workflows/ci-backend.yml (https://github.com/skilleduplife/backend/blob/main/.github/workflows/ci-backend.yml) in the backend repo.
+# Place this file at .github/workflows/ci-backend.yml (https://github.com/skilleduplife/backend/tree/main/.github/workflows/ci-backend.yml) in the backend repo.
 # This workflow runs on pull requests to dev and main branches.
 
 name: CI Pipeline - Backend

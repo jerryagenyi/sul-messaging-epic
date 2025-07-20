@@ -10,7 +10,7 @@
 - **Where to find live updates:** Always use the [Google Sheets version](https://docs.google.com/spreadsheets/d/1q2xA4L0VjMm7GEi-NSbk-X55E4FXBHt9O2PLc0jlqhk/edit?usp=sharing) for the latest info.
 
 ## 🗂️ Quick Glossary
-- **Module:** A major area or section of the app (e.g. Authentication, Messaging)
+- **Module (Epic):** A major area or section of the app (e.g. Authentication, Messaging)
 - **Feature:** A specific function or capability within a module
 - **Test Name / Scenario:** The name of the test (unit or E2E)
 - **Location (Path):** Where the test file lives in the repo (with a link if possible)
@@ -22,9 +22,9 @@
 ---
 
 > 📝 **CHANGELOG**
->| Date       | Change Description                | Author         |
+>| Date (DD-MM-YYYY) | Change Description                | Author         |
 >|------------|-----------------------------------|----------------|
->| 2024-06-07 | Initial template created          | Jeremiah Agenyi    |
+>| 20-07-2025 | Initial setup                     | Jeremiah Agenyi    |
 >| YYYY-MM-DD | [Describe change]                 | [Your Name]    |
 
 > **Note:** This tracker is best managed in Google Sheets for cross-repo visibility. Use the 'Module > Feature > User Story > Task' structure. Where possible, link the 'Location (Path)' to the actual GitHub file.
