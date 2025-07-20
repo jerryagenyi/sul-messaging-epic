@@ -2,6 +2,25 @@
 
 > **Live Tracker:** The most up-to-date version of this test coverage tracker is maintained in Google Sheets: [Test Coverage Tracker – SkilledUp.Life Modules (Live)](https://docs.google.com/spreadsheets/d/1q2xA4L0VjMm7GEi-NSbk-X55E4FXBHt9O2PLc0jlqhk/edit?usp=sharing)
 
+---
+
+## ℹ️ How to Use This Tracker
+- **Purpose:** This tracker helps everyone see which features and modules are covered by tests (unit and E2E) across both frontend and backend.
+- **How to update:** After each sprint or feature release, add new tests, update statuses, and keep the 'Last Updated' column current.
+- **Where to find live updates:** Always use the [Google Sheets version](https://docs.google.com/spreadsheets/d/1q2xA4L0VjMm7GEi-NSbk-X55E4FXBHt9O2PLc0jlqhk/edit?usp=sharing) for the latest info.
+
+## 🗂️ Quick Glossary
+- **Module:** A major area or section of the app (e.g. Authentication, Messaging)
+- **Feature:** A specific function or capability within a module
+- **Test Name / Scenario:** The name of the test (unit or E2E)
+- **Location (Path):** Where the test file lives in the repo (with a link if possible)
+- **Status:**
+  - ✅ Done: Test is complete and reliable
+  - 🟡 WIP: Test exists but is incomplete or unstable
+  - 🔴 Missing: Test needs to be written
+
+---
+
 > 📝 **CHANGELOG**
 >| Date       | Change Description                | Author         |
 >|------------|-----------------------------------|----------------|
