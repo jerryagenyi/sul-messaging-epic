@@ -58,7 +58,8 @@ git clone https://github.com/jerryagenyi/sul-messaging-epic.git
 cd sul-messaging-epic
 
 # Install dependencies
-npm install
+pip install -r requirements.txt
+npm install  # For development scripts
 
 # Run tests
 npm test
@@ -66,6 +67,12 @@ npm test
 # Start development server
 npm run dev
 ```
+
+### 📋 Workflow Expectations
+- Always run `npm run quality` before submitting a PR
+- Use Python linting plugins in your IDE (e.g. VS Code) to catch issues early
+- CI will reject unformatted or error-prone code during PR reviews
+- Run `npm run format:fix` and `npm run imports:fix` to auto-fix formatting issues locally
 
 ## 📊 Team Roles & Responsibilities
 

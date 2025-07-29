@@ -34,3 +34,8 @@ scikit-image==0.21.0
 
 # YAML parsing for design specifications
 PyYAML==6.0.1
+
+# Code quality and formatting tools
+flake8==6.0.0
+black==23.0.0
+isort==5.12.0
