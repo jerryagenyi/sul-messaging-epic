@@ -18,6 +18,7 @@
   - ✅ Done: Test is complete and reliable
   - 🟡 WIP: Test exists but is incomplete or unstable
   - 🔴 Missing: Test needs to be written
+- **Regression Test:** A test that confirms previously working features still function correctly after code changes
 
 ---
 
@@ -55,3 +56,20 @@
 - 🔴 Missing: Needs to be written
 
 > Please update after each sprint or feature release.
+
+---
+
+## 🧪 Regression Tests
+
+| Module        | Feature         | Regression Scenario         | Description                                           | Tool       | Status     | Last Updated | Location (Path)                       |
+|---------------|-----------------|-----------------------------|--------------------------------------------------------|------------|------------|---------------|--------------------------------------|
+| Authentication| Login           | Post-refactor login flow    | Ensure dashboard redirect still works after code changes | Playwright | ✅ Done     | 2025-07-29    | frontend/tests/e2e/login-regression.spec.js |
+| Profiles       | Email Update    | Persistence after UI overhaul| Confirm updates are saved correctly                   | Selenium   | 🟡 WIP      | 2025-07-29    | frontend/tests/e2e/profile-email.spec.js    |
+| Notifications  | Settings Toggle | Silent mode re-trigger test | Verify notification toggle still silences alerts      | Jest       | 🔴 Missing  | 2025-07-29    | backend/tests/NotificationTest.php         |
+
+📌 Notes
+
+- Regression tests protect stable features from unintended breakage.
+- Prioritize flows that users rely on or that have broken before.
+- Trigger regressions after major refactors, dependency updates, or layout/UI changes.
+- Recommended frequency: post-sprint and pre-release.

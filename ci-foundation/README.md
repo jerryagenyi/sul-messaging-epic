@@ -10,11 +10,13 @@ This folder contains the standardized CI/CD configurations, workflows, and setup
 
 ## 📂 Contents
 
-- `ci-setup-checklist.md` — Step-by-step CI setup instructions
-- `workflow-templates/` — GitHub Actions workflows for Vue & Laravel
-- `eslint-config/` — Reusable ESLint rules (to be added)
-- `prettier-config/` — Prettier formatting standards (to be added)
-- `README.md` — This document
+- `ci_setup_checklist.md` – Step-by-step CI setup instructions
+- `workflow-templates/` – GitHub Actions workflows for Vue & Laravel
+- `eslint-config/` – ESLint rules and configurations
+- `prettier-config/` – Prettier formatting standards and configurations
+- `ci-shared/` – Reusable configuration files for production repos
+- `ci_shared_setup_checklist.md` – Step-by-step implementation guide
+- `README.md` – This document
 
 ---
 
@@ -34,6 +36,41 @@ Refer to [CI Setup Checklist](./ci-setup-checklist.md) for full instructions.
 - Add templates for test runners (Jest, Playwright)
 - Extend workflows to integrate coverage reports
 - Modularize CI setups for component-level enforcement
+
+---
+
+## 🧱 CI Pipeline Implementation Roadmap (Frontend Focus)
+
+We are phasing CI in the following stages:
+
+1. ✅ Basic CI – Linting & Formatting
+   - Enforce Prettier and ESLint rules on all PRs
+
+2. 🔬 Unit Tests
+   - Add CI steps for frontend unit testing (e.g., Jest/Vitest)
+
+3. 🎯 E2E Tests
+   - Include steps for Playwright end-to-end testing
+
+4. 🧪 Regression Prototyping
+   - Build a standalone `regression-check.yml` workflow to validate smoke coverage
+   - Future plans: trigger chained CI after regression passes using `workflow_run`
+   - Currently runs on `pull_request` events only (non-blocking)
+   - Goal: catch regressions before production deploy pipelines run
+
+---
+
+## 🚧 Repository Usage
+
+This configuration lives in a staging repo (`https://github.com/jerryagenyi/skilleduplife-ci`)  
+🚀 Intended to be implemented in:
+- Frontend: `https://github.com/skilleduplife/frontend`
+- Backend: `https://github.com/skilleduplife/backend`
+
+Please copy config files and adjust paths to match the actual production repo's structure.
+
+See [`ci-shared/README.md`](./ci-shared/README.md) for detailed usage instructions and configuration philosophy.
+See [`ci-shared/ci_shared_setup_checklist.md`](./ci-shared/ci_shared_setup_checklist.md) for implementation steps.
 
 ---
 

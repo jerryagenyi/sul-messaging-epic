@@ -1,8 +1,8 @@
-# Prettier Configuration Examples
+# Prettier Configuration for SkilledUp.Life
 
-> **Prettier formatting samples and configurations for SkilledUp.Life projects**
-
-This folder contains Prettier configuration examples and formatting standards for consistent code style across all projects.
+This folder contains shared Prettier configurations for frontend modules.  
+See `ci_setup_checklist.md` for active formatting setup.  
+Future improvements will include scoped formatting rules by module type.
 
 ## 📁 Contents
 

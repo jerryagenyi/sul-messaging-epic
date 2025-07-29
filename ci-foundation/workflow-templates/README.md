@@ -10,6 +10,7 @@ This folder contains production-ready GitHub Actions workflow templates that can
 
 - **[ci-frontend.yml](./ci-frontend.yml)** - Vue.js frontend CI/CD workflow
 - **[ci-backend.yml](./ci-backend.yml)** - Laravel backend CI/CD workflow
+- **[regression-check.yml](./regression-check.yml)** - Regression testing prototype (owner-facing)
 
 ### Template Features
 
@@ -26,6 +27,11 @@ This folder contains production-ready GitHub Actions workflow templates that can
 - **Security Scanning** - Composer audit and Symfony security checker
 - **Build Optimization** - Laravel production optimizations
 - **Coverage Reporting** - Test coverage with Codecov integration
+
+#### Regression Workflow (`regression-check.yml`)
+- **Smoke Testing** - Basic functionality validation
+- **Prototype Status** - Owner-facing workflow for future stability validation
+- **Future Integration** - Foundation for chained CI workflows after PR merges
 
 ## 🔧 Usage
 
@@ -119,3 +125,44 @@ Enable these status checks:
 ---
 
 *These templates are part of the SkilledUp.Life CI/CD Foundation. For questions or improvements, please contribute through our standard process.*
+
+---
+
+## 🚧 Implementation Notes
+
+🚧 This configuration lives in a staging repo (`https://github.com/jerryagenyi/skilleduplife-ci`)  
+🚀 Intended to be implemented in:
+- Frontend: `https://github.com/skilleduplife/frontend`
+- Backend: `https://github.com/skilleduplife/backend`
+
+Please copy config files and adjust paths to match the actual production repo's structure.
+
+---
+
+## 🛠 Trigger Caveats & Future Plans
+
+Only PR-Triggered Workflows (Current Scope):
+- All active workflows (`ci-frontend.yml`, `ci-backend.yml`, `regression-check.yml`) are triggered via `pull_request` events
+- `ci-frontend.yml` and `ci-backend.yml` serve developer onboarding, CI enforcement, and scoped validation
+- `regression-check.yml` serves as a **lead developer/owner-facing prototype** for validating stability across merged PRs — not a required status check
+
+Push-Triggered `workflow_run` Chaining (Planned Only):
+- GitHub's `workflow_run` only works on `push` events to the default branch (`main`)
+- These events occur **after** PRs are merged — usually by a maintainer or lead engineer
+- They cannot run on PRs, which is why CI chaining lives only in sample `.txt` files for now
+- See `ci-frontend-reg-check.txt` and `ci-backend-reg-check.txt` for future architecture
+- **Product Owner Context:** This means additional safety checks will automatically run after code is merged, acting as a final quality gate before changes reach users
+
+Regression Check Clarification:
+- `regression-check.yml` runs on `pull_request` events only
+- It does NOT run on `push` events at this time — we are not using `workflow_run` yet
+- The file is scoped for internal QA/stability review by the lead developer
+- It is not a required status check: failed runs appear as warnings but do not block merging
+
+🧪 Regression Check – Current & Future Logic
+
+- Located in [`skilleduplife-ci/workflow-templates/regression-check.yml`](https://github.com/jerryagenyi/skilleduplife-ci/blob/master/ci-foundation/workflow-templates/regression-check.yml)
+- Currently runs on `pull_request` events only (branches: `main`, `dev`)
+- Future plan: trigger downstream CI workflows using `workflow_run` after successful merge
+- Goal: catch regressions before production deploy pipelines run
+- Non-blocking today: failed runs do not prevent merging

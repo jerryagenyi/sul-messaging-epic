@@ -44,6 +44,15 @@ npm install
 
 This ensures all linting/formatting tools are installed locally via `package-lock.json`.
 
+📦 **Dev Setup Requirement:**
+After pulling or cloning the repo, each developer must run:
+
+```bash
+npm install
+```
+
+This ensures all ESLint and Prettier tools are installed locally.
+
 ## ✅ 3. Ensure Lock File Exists / Update After Dependency Changes
 
 - [x] `frontend/package-lock.json` exists.
@@ -61,7 +70,7 @@ This ensures all linting/formatting tools are installed locally via `package-loc
   ```
   frontend/.github/workflows/ci-frontend.yml
   ```
-- [ ] Add the lint-only version of `ci-frontend.yml` initially (with echo placeholders for other jobs)
+- [ ] Add the baseline CI for style and structure checks version of `workflow-templates/ci-frontend.yml` initially (with echo placeholders for other jobs)
 - [ ] Confirm it's committed to the correct path
 
 ## ✅ 4. Trigger Workflow at Least Once
@@ -83,7 +92,7 @@ This ensures all linting/formatting tools are installed locally via `package-loc
   frontend/tests/unit/
   frontend/tests/e2e/
   ```
-- [ ] Replace placeholder `echo` in `ci-frontend.yml` with:
+- [ ] Replace placeholder `echo` in `workflow-templates/ci-frontend.yml` with:
   ```bash
   npm run test:unit
   npx playwright test
@@ -97,6 +106,14 @@ This ensures all linting/formatting tools are installed locally via `package-loc
 - ESLint and Prettier enforce code standards _locally and in CI_.
 - Developers should run `npm run lint` and `npm run format` before **every commit**.
 - If skipped, CI will catch errors on PR and block the merge.
+
+## ✅ 6.1. Baseline CI Explanation
+
+**Basic Static Analysis CI:**
+- Includes ESLint for code quality and error detection
+- Includes Prettier for formatting consistency across the codebase
+- This is our baseline check before any tests are added
+- Ensures all code follows the same style and structure standards
 
 **Typical CI error output:**
 
@@ -257,7 +274,7 @@ If Asinsala or Christian want to extend this later (e.g. enforce scoped styles o
   ```
   backend/tests/
   ```
-- [ ] Replace placeholder in `ci.yml`:
+- [ ] Replace placeholder in `workflow-templates/ci-backend.yml`:
   ```bash
   php artisan test
   ```

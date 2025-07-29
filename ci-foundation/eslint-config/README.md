@@ -1,8 +1,8 @@
-# ESLint Configuration Examples
+# ESLint Rules for SkilledUp.Life
 
-> **ESLint rule examples and configurations for SkilledUp.Life projects**
-
-This folder contains ESLint configuration examples and rule customizations for different project types and team preferences.
+This folder contains shared ESLint configurations for frontend modules.  
+See `ci_setup_checklist.md` for active rule setup.  
+Future improvements will include scoped rules by module type.
 
 ## 📁 Contents
 
@@ -28,6 +28,25 @@ _Configuration files will be added here as the foundation evolves._
 - **[Getting Started Guide](../getting-started-ci.md)** - ESLint setup instructions
 - **[Setup Checklist](../ci-setup-checklist.md)** - Complete implementation guide
 - **[Vue.js Rules](../ci-setup-checklist.md#vue-specific-eslint--prettier-rules)** - Vue-specific configuration
+
+---
+
+## 📐 Configuration Strategy
+
+We may eventually scope ESLint rules by module type:
+- Shared base rules will live in this folder
+- Module-specific overrides will be imported via `.eslintrc.js` using:
+
+```js
+module.exports = {
+  ...require('./.github/ci-shared/eslint-config/eslint.vue.config'),
+  // Add module-specific overrides here
+}
+```
+
+Examples include stricter linting for backend APIs, relaxed rules for prototypes, etc.
+
+See `ci_setup_checklist.md` for current rules in use.
 
 ---
 
