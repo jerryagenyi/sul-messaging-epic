@@ -17,9 +17,9 @@ The original content has been organized and preserved for future reference while
 
 ### Quick Access
 
-- **[CI/CD Setup Guide](ci-foundation/README.md)** - Complete foundation overview
-- **[Setup Checklist](ci-foundation/ci-setup-checklist.md)** - Step-by-step implementation
-- **[Workflow Templates](ci-foundation/workflow-templates/)** - Industry-standard CI/CD templates
+- **[CI/CD Setup Guide](ci-structure/README.md)** - Complete foundation overview
+- **[Setup Checklist](ci-structure/ci-setup-checklist.md)** - Step-by-step implementation
+- **[Workflow Templates](ci-structure/workflow-templates/)** - Industry-standard CI/CD templates
 
 ### What's Included
 

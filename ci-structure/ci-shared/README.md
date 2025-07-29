@@ -11,6 +11,12 @@ Examples:
 - `prettier.base.config.js` – Shared Prettier formatting
 - `jest.vue.config.js` – (Future) Vue unit testing
 
+## 🧪 Future: Unit Testing Presets
+
+- `jest.vue.config.js` staged for Vue-based unit testing
+- Intended to be copied into: `.github/ci-shared/test-config/`
+- Will be activated when CI pipeline reaches unit testing phase
+
 ## 🧠 Educational Design
 
 Each config file includes:
@@ -53,7 +59,7 @@ ci-shared/
 ## 🧪 Future: Unit Testing Presets
 
 - `jest.vue.config.js` staged for Vue-based unit testing
-- Intended to be copied into: `.github/ci-shared/test-config/`
+- Intended to be copied into: `.github/ci-structure/ci-shared/test-config/`
 - Will be activated when CI pipeline reaches unit testing phase
 
 ---

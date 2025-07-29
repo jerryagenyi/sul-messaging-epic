@@ -1,5 +1,5 @@
 // 🧪 SkilledUp Life Jest Config – Vue Frontend Unit Tests
-// Copy this file to: skilleduplife/frontend/.github/ci-shared/test-config/ (future use)
+// Copy this file to: skilleduplife/frontend/.github/ci-structure/ci-shared/test-config/ (future use)
 
 module.exports = {
   // Jest presets for Vue component testing

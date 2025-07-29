@@ -24,7 +24,7 @@ Create this path in each production repo:
 
 ## 📄 2. Copy Staging Config Files Into Production Repos
 
-From: `skilleduplife-ci/ci-shared/`  
+From: `skilleduplife-ci/ci-structure/ci-shared/`  
 To:
 - Frontend → `.github/ci-shared/` in Vue repo
 - Backend → `.github/ci-shared/` in Laravel repo
@@ -44,7 +44,7 @@ Example for Vue modules (inside frontend):
 
 ```js
 module.exports = {
-  ...require('./.github/ci-shared/eslint-config/eslint.vue.config'),
+  ...require('./.github/ci-structure/ci-shared/eslint-config/eslint.vue.config'),
   // Add module-specific overrides here
 }
 ```
@@ -59,7 +59,7 @@ Use this import syntax:
 
 ```js
 module.exports = {
-  ...require('./.github/ci-shared/prettier-config/prettier.base.config'),
+  ...require('./.github/ci-structure/ci-shared/prettier-config/prettier.base.config'),
   // Project-specific overrides here
 }
 ```
@@ -108,13 +108,13 @@ In `ci-shared/README.md`, ensure this content is reflected:
 mkdir -p .github/ci-shared/{eslint-config,prettier-config,test-config}
 
 # Copy config files (adjust paths as needed)
-cp ../../skilleduplife-ci/ci-foundation/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint-config/
-cp ../../skilleduplife-ci/ci-foundation/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/
-cp ../../skilleduplife-ci/ci-foundation/ci-shared/test-config/jest.vue.config.js .github/ci-shared/test-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/test-config/jest.vue.config.js .github/ci-shared/test-config/
 
 # Update .eslintrc.js
 echo "module.exports = {
-  ...require('./.github/ci-shared/eslint-config/eslint.vue.config'),
+  ...require('./.github/ci-structure/ci-shared/eslint-config/eslint.vue.config'),
   // Add module-specific overrides here
 }" > .eslintrc.js
 ```
@@ -125,8 +125,8 @@ echo "module.exports = {
 mkdir -p .github/ci-shared/{eslint-config,prettier-config}
 
 # Copy config files
-cp ../../skilleduplife-ci/ci-foundation/ci-shared/eslint-config/eslint.backend.config.js .github/ci-shared/eslint-config/
-cp ../../skilleduplife-ci/ci-foundation/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/eslint-config/eslint.backend.config.js .github/ci-shared/eslint-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/
 ```
 
 ---
@@ -148,7 +148,7 @@ cp ../../skilleduplife-ci/ci-foundation/ci-shared/prettier-config/prettier.base.
 When migrating configs, consider adding this comment to copied files:
 ```js
 // ✅ Confirmed migrated from ci-staging
-// Original: skilleduplife-ci/ci-foundation/ci-shared/
+// Original: skilleduplife-ci/ci-structure/ci-shared/
 // Migrated: [DATE] by [CONTRIBUTOR]
 ```
 

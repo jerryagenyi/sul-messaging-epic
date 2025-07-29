@@ -1,5 +1,5 @@
 // 🎨 SkilledUp Life Prettier Config – Shared Format Rules
-// Copy this file to: .github/ci-shared/prettier-config/ in frontend/backend repos
+// Copy this file to: .github/ci-structure/ci-shared/prettier-config/ in frontend/backend repos
 
 module.exports = {
   // Basic formatting rules

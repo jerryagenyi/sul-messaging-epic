@@ -1,8 +1,8 @@
-# ⚙️ SkilledUp.Life CI/CD Foundation
+# ⚙️ SkilledUp.Life CI/CD Structure
 
 ## 🔍 Purpose
 
-This folder contains the standardized CI/CD configurations, workflows, and setup guides used across SkilledUp.Life projects. It is designed to enforce consistency and automation for both frontend (Vue) and backend (Laravel) codebases.
+This folder contains the standardized CI/CD configurations, workflows, and setup guides used across SkilledUp.Life projects. It is designed to enforce consistency and automation for both frontend (Vue) and backend (Laravel) codebases. This modular structure serves as a reusable hub of CI logic for long-term scalability.
 
 👉 Original focus on the Messaging Epic (TDD/BDD) remains documented in the main repo for future reference.
 

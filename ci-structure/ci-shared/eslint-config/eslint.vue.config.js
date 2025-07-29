@@ -1,5 +1,5 @@
 // 🔧 SkilledUp Life ESLint Config – Vue Frontend
-// Copy this file to: skilleduplife/frontend/.github/ci-shared/eslint-config/
+// Copy this file to: skilleduplife/frontend/.github/ci-structure/ci-shared/eslint-config/
 
 module.exports = {
   root: true,
