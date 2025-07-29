@@ -30,7 +30,7 @@ mkdir -p src/features/messaging
 mkdir -p tests/messaging
 
 # Copy test suite from specification repository
-git clone https://github.com/jerryagenyi/sul-messaging-epic.git temp-specs
+git clone https://github.com/jerryagenyi/skilleduplife-ci.git temp-specs
 cp -r temp-specs/tests/* tests/messaging/
 cp temp-specs/requirements.txt tests/messaging/
 cp temp-specs/pytest.ini tests/messaging/
@@ -55,7 +55,7 @@ mkdir -p src/api/messaging
 mkdir -p tests/messaging
 
 # Copy relevant test specifications
-git clone https://github.com/jerryagenyi/sul-messaging-epic.git temp-specs
+git clone https://github.com/jerryagenyi/skilleduplife-ci.git temp-specs
 cp -r temp-specs/docs/* docs/messaging/
 cp temp-specs/TDD_DEVELOPMENT_GUIDE.md docs/
 rm -rf temp-specs

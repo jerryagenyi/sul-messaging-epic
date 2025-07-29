@@ -360,7 +360,7 @@ python tools/visual_review_tool.py --component company_dashboard --screenshot im
 ```bash
 # In skilleduplife/frontend
 mkdir -p tests/visual
-cp sul-messaging-epic/VISUAL_TESTING_COMPLETE_GUIDE.md tests/visual/
+cp skilleduplife-ci/VISUAL_TESTING_COMPLETE_GUIDE.md tests/visual/
 
 # Add visual testing dependencies
 npm install --save-dev @percy/selenium-js @percy/cli

@@ -1,7 +1,7 @@
 # Messaging Epic Overview
 
 ## Repository
-**GitHub Repository:** https://github.com/jerryagenyi/sul-messaging-epic
+**GitHub Repository:** https://github.com/jerryagenyi/skilleduplife-ci
 
 ## Business Objective
 Enable secure, role-based private messaging between volunteers, companies, and system administrators to facilitate communication and collaboration on the SkilledUp.Life platform.

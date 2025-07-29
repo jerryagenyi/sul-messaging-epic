@@ -1,6 +1,6 @@
 # SkilledUp.Life CI/CD Foundation
 
-**Repository:** https://github.com/jerryagenyi/sul-messaging-epic
+**Repository:** https://github.com/jerryagenyi/skilleduplife-ci
 
 > **🚀 Central CI/CD Implementation Hub for SkilledUp.Life Projects**
 
@@ -62,7 +62,7 @@ This project implements a complete messaging solution with:
 ### Documentation Structure
 
 ```
-sul-messaging-epic/
+skilleduplife-ci/
 ├── docs/
 │   ├── specs/messaging-epic/          # Feature specifications
 │   ├── gherkin/messaging-epic/        # BDD scenarios
@@ -96,8 +96,8 @@ This project follows the **Spec-to-Test Framework v2.2** for unified development
 
 ```bash
 # Clone the repository
-git clone https://github.com/jerryagenyi/sul-messaging-epic.git
-cd sul-messaging-epic
+git clone https://github.com/jerryagenyi/skilleduplife-ci.git
+cd skilleduplife-ci
 
 # Install dependencies
 pip install -r requirements.txt
@@ -222,7 +222,7 @@ See [docs/testing/messaging-epic/test-matrix.md](docs/testing/messaging-epic/tes
 
 For questions or support:
 
-- **GitHub Issues**: [Create an issue](https://github.com/jerryagenyi/sul-messaging-epic/issues)
+- **GitHub Issues**: [Create an issue](https://github.com/jerryagenyi/skilleduplife-ci/issues)
 - **Documentation**: Check [docs/](docs/) folder
 - **Framework Guide**: [Spec-to-Test Framework v2.2](spec-to-test/Spec-to-Test_framework_v2.2.md)
 

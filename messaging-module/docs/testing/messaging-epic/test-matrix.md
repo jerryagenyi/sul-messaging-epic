@@ -1,6 +1,6 @@
 # Messaging Epic Test Matrix
 
-**Repository:** https://github.com/jerryagenyi/sul-messaging-epic
+**Repository:** https://github.com/jerryagenyi/skilleduplife-ci
 
 | Feature | What | Why | How | Edge Cases | Acceptance Criteria | Suggested Test Name |
 |---------|------|-----|-----|------------|-------------------|-------------------|
@@ -13,7 +13,7 @@
 
 ## GitHub Repository Structure
 ```
-sul-messaging-epic/
+skilleduplife-ci/
 ├── docs/
 │   ├── specs/messaging-epic/
 │   ├── gherkin/messaging-epic/
