@@ -1,0 +1,139 @@
+# CI Pipeline for Laravel Backend
+# Template for SkilledUp.Life backend projects
+# Place this file at .github/workflows/ci-backend.yml in your backend repository
+
+name: CI Pipeline - Backend
+
+on:
+  pull_request:
+    branches: [main, dev, develop]
+  push:
+    branches: [main, dev, develop]
+
+jobs:
+  lint:
+    name: PHP Lint & Style Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pdo_mysql
+          coverage: xdebug
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Run PHP_CodeSniffer
+        run: vendor/bin/phpcs --standard=PSR12 app/ tests/
+
+      - name: Run PHPStan static analysis
+        run: vendor/bin/phpstan analyse app/ --level=5
+
+  test:
+    name: Unit & Feature Tests
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: laravel_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, pdo_mysql
+          coverage: xdebug
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Copy environment file
+        run: cp .env.example .env
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Run database migrations
+        run: php artisan migrate --force
+
+      - name: Run tests with coverage
+        run: php artisan test --coverage --min=80
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        if: success()
+        with:
+          file: ./coverage.xml
+          flags: backend-tests
+          name: backend-coverage
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Run security audit
+        run: composer audit --format=json --no-interaction
+
+      - name: Run PHP Security Checker
+        run: |
+          curl -sS https://security.symfony.com/check_lock -H "Content-Type: application/json" -d @composer.lock > security-report.json
+          cat security-report.json
+
+  build:
+    name: Build Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --optimize-autoloader
+
+      - name: Optimize for production
+        run: |
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: laravel-build
+          path: |
+            bootstrap/cache/
+            vendor/
+          retention-days: 7

@@ -18,12 +18,12 @@ The original messaging-related content has been preserved for future reference w
 ### Quick Access
 
 - **[CI/CD Setup Guide](ci-foundation/README.md)** - Complete foundation overview
-- **[Getting Started](ci-foundation/getting-started-ci.md)** - Developer onboarding
 - **[Setup Checklist](ci-foundation/ci-setup-checklist.md)** - Step-by-step implementation
+- **[Workflow Templates](ci-foundation/workflow-templates/)** - Industry-standard CI/CD templates
 
 ### What's Included
 
-- **Standardized Workflows** - Reusable GitHub Actions templates
+- **Industry-Standard Templates** - Production-ready GitHub Actions workflows
 - **Quality Gates** - ESLint, Prettier, and testing automation
 - **Developer Guidelines** - Clear expectations and best practices
 - **Configuration Examples** - ESLint and Prettier rule samples
