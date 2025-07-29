@@ -1,6 +1,7 @@
-# CI Pipeline for Laravel Backend
+# CI Pipeline for Backend (Linting, Unit, E2E, and regression tests)
 # Template for SkilledUp.Life backend projects
 # Place this file at .github/workflows/ci-backend.yml in your backend repository
+# This workflow runs on pull requests to dev and main branches.
 
 name: CI Pipeline - Backend
 

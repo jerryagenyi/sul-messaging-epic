@@ -11,7 +11,7 @@ This repository has been repurposed to serve as the central CI/CD foundation for
 **Original Purpose:** Messaging module implementation using TDD/BDD  
 **Current Purpose:** Central CI/CD foundation for SkilledUp.Life projects
 
-The original messaging-related content has been preserved for future reference while the repository now focuses on CI/CD standardization and implementation.
+The original content has been organized and preserved for future reference while the repository now focuses on CI/CD standardization and implementation.
 
 ## 🚀 CI/CD Foundation
 
@@ -27,6 +27,19 @@ The original messaging-related content has been preserved for future reference w
 - **Quality Gates** - ESLint, Prettier, and testing automation
 - **Developer Guidelines** - Clear expectations and best practices
 - **Configuration Examples** - ESLint and Prettier rule samples
+
+## 📚 Legacy Content (Organized)
+
+### TDD/BDD Framework
+- **[TDD/BDD Framework](tdd-bdd-framework/)** - Test-Driven Development and Behavior-Driven Development methodology
+- **Visual Testing Guides** - Complete visual testing implementation framework
+- **Figma-to-Tests Workflow** - Converting design specifications to test cases
+
+### Messaging Module
+- **[Messaging Module](messaging-module/)** - Original messaging epic specifications and design assets
+- **Complete Specifications** - 64KB messaging module specification
+- **Design Assets** - Figma SVGs and design specifications
+- **Feature Documentation** - Gherkin scenarios and test matrices
 
 ## 🎯 Project Overview
 

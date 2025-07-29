@@ -1,6 +1,7 @@
-# CI Pipeline for Vue.js Frontend
+# CI Pipeline for Frontend (Linting, Unit, E2E, and regression tests)
 # Template for SkilledUp.Life frontend projects
 # Place this file at .github/workflows/ci-frontend.yml in your frontend repository
+# This workflow runs on pull requests to dev and main branches.
 
 name: CI Pipeline - Frontend
 
