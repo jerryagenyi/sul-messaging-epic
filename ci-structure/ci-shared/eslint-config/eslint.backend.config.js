@@ -1,5 +1,5 @@
 // 🔧 SkilledUp Life ESLint Config – Backend
-// Copy this file to: skilleduplife/backend/.github/ci-structure/ci-shared/eslint-config/
+// Copy this file to: skilleduplife/backend/.github/ci-shared/eslint-config/
 
 module.exports = {
   root: true,

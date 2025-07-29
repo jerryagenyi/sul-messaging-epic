@@ -44,7 +44,7 @@ Example for Vue modules (inside frontend):
 
 ```js
 module.exports = {
-  ...require('./.github/ci-structure/ci-shared/eslint-config/eslint.vue.config'),
+  ...require('./.github/ci-shared/eslint-config/eslint.vue.config'),
   // Add module-specific overrides here
 }
 ```
@@ -59,7 +59,7 @@ Use this import syntax:
 
 ```js
 module.exports = {
-  ...require('./.github/ci-structure/ci-shared/prettier-config/prettier.base.config'),
+  ...require('./.github/ci-shared/prettier-config/prettier.base.config'),
   // Project-specific overrides here
 }
 ```
@@ -114,7 +114,7 @@ cp ../../skilleduplife-ci/ci-structure/ci-shared/test-config/jest.vue.config.js 
 
 # Update .eslintrc.js
 echo "module.exports = {
-  ...require('./.github/ci-structure/ci-shared/eslint-config/eslint.vue.config'),
+  ...require('./.github/ci-shared/eslint-config/eslint.vue.config'),
   // Add module-specific overrides here
 }" > .eslintrc.js
 ```
@@ -149,6 +149,7 @@ When migrating configs, consider adding this comment to copied files:
 ```js
 // ✅ Confirmed migrated from ci-staging
 // Original: skilleduplife-ci/ci-structure/ci-shared/
+// Destination: .github/ci-shared/ in production repos
 // Migrated: [DATE] by [CONTRIBUTOR]
 ```
 

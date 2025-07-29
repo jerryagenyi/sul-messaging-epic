@@ -46,7 +46,7 @@ module.exports = {
 ## 📁 Folder Structure
 
 ```
-ci-shared/
+ci-structure/ci-shared/          # Staging repo structure
 ├── eslint-config/
 │   ├── eslint.vue.config.js
 │   └── eslint.backend.config.js
@@ -54,12 +54,18 @@ ci-shared/
 │   └── prettier.base.config.js
 └── test-config/
     └── jest.vue.config.js         # For future use
+
+# When copied to production repos:
+.github/ci-shared/               # Production repo structure
+├── eslint-config/
+├── prettier-config/
+└── test-config/
 ```
 
 ## 🧪 Future: Unit Testing Presets
 
 - `jest.vue.config.js` staged for Vue-based unit testing
-- Intended to be copied into: `.github/ci-structure/ci-shared/test-config/`
+- Intended to be copied into: `.github/ci-shared/test-config/`
 - Will be activated when CI pipeline reaches unit testing phase
 
 ---
