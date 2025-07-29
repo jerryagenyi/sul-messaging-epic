@@ -1,0 +1,16 @@
+{
+  "editor.formatOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "vue"
+  ],
+  "prettier.requireConfig": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "gitlens.codeLens.enabled": false,
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "thunder-client.saveToWorkspace": true
+}

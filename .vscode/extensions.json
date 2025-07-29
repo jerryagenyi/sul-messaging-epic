@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "Vue.volar",                       // Vue 3 language support
+    "esbenp.prettier-vscode",         // Code formatting
+    "dbaeumer.vscode-eslint",         // Linting
+    "github.vscode-pull-request-github", // PR review integration
+    "rangav.vscode-thunder-client",   // Lightweight API testing
+    "eamodio.gitlens",                // Git insights
+    "streetsidesoftware.code-spell-checker" // Spell checker for commit hygiene
+  ]
+} 
