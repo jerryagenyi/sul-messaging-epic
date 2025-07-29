@@ -1,0 +1,34 @@
+# CI Pipeline for Backend (Laravel unit tests)
+# Repository: https://github.com/skilleduplife/backend
+# This is the 'Model & Controller' in the MVC architecture, exposing APIs for the frontend.
+# Place this file at .github/workflows/ci-backend.yml (https://github.com/skilleduplife/backend/tree/main/.github/workflows/ci-backend.yml) in the backend repo.
+# This workflow runs on pull requests to dev and main branches.
+
+name: CI Pipeline - Backend
+
+on:
+  pull_request:
+    branches: [dev, main]
+
+jobs:
+  test:
+    name: Unit Tests (Laravel)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3  # Fetch code
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'  # Use PHP 8.1 for Laravel
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          composer install --no-interaction --prefer-dist  # Install PHP dependencies
+
+      - name: Run Laravel Tests
+        run: |
+          cd backend
+          php artisan test  # Run Laravel unit tests
