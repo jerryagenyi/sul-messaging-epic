@@ -10,7 +10,9 @@ This folder contains the standardized CI/CD configurations, workflows, and setup
 
 ## 📂 Contents
 
-- `ci_setup_checklist.md` – Step-by-step CI setup instructions
+- `ci_setup_checklist.md` – Unified CI setup checklist with shared principles
+- `ci_setup_checklist-fe.md` – Detailed frontend (Vue) CI setup instructions
+- `ci_setup_checklist-be.md` – Detailed backend (Laravel) CI setup instructions
 - `workflow-templates/` – GitHub Actions workflows for Vue & Laravel
 - `eslint-config/` – ESLint rules and configurations
 - `prettier-config/` – Prettier formatting standards and configurations
@@ -27,7 +29,7 @@ This folder contains the standardized CI/CD configurations, workflows, and setup
 3. Trigger workflow via PR → `main` to see CI in action.
 4. Add test coverage and track it via linked sheet.
 
-Refer to [CI Setup Checklist](./ci-setup-checklist.md) for full instructions.
+Refer to [CI Setup Checklist](./ci_setup_checklist.md) for quick setup and shared principles, or the detailed [Frontend](./ci_setup_checklist-fe.md) and [Backend](./ci_setup_checklist-be.md) checklists for specific implementation steps.
 
 ---
 

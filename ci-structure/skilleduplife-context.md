@@ -27,5 +27,19 @@ To bridge the gap between education and real-world experience by connecting volu
 - Volunteers are temporary contributors, often balancing learning and impact
 
 ## 🛠️ Engineering Workflow
-- Streamlined processes enable sustainability across time zones and contributor turnover
-- CI/CD pipelines enforce consistency, reduce errors, and empower contributors to build confidently 
+
+### 🎯 Current State & Goals
+
+**Current Challenges:**
+- No CI/CD pipeline to manage PRs from developers
+- No coding standards enforcement - developers code as they prefer
+- Lack of automated quality checks
+
+**Implementation Goals:**
+1. **Phase 1: Foundation** - ESLint + Prettier for formatting and syntax checks
+2. **Phase 2: Testing** - Unit tests, E2E tests, and regression testing
+3. **Phase 3: Full CI/CD** - Automated PR management and deployment
+
+**Vision:**
+- Streamlined processes that enable sustainability across time zones and contributor turnover
+- CI/CD pipelines that enforce consistency, reduce errors, and empower contributors to build confidently 

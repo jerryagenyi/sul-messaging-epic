@@ -2,15 +2,21 @@
 // Copy this file to: .github/ci-shared/prettier-config/ in frontend/backend repos
 
 module.exports = {
-  // Basic formatting rules
+  // Schema reference for IDE support
+  $schema: 'https://json.schemastore.org/prettierrc',
+  
+  // Basic formatting rules (aligned with your current config)
   semi: false,
   singleQuote: true,
-  printWidth: 100,
-  trailingComma: 'es5',
-  tabWidth: 2,
+  printWidth: 120,
+  tabWidth: 4,
+  trailingComma: 'none',
   useTabs: false,
   bracketSpacing: true,
   arrowParens: 'avoid',
+  
+  // HTML/Vue specific settings
+  htmlWhitespaceSensitivity: 'ignore',
   
   // File-specific overrides
   overrides: [
@@ -25,6 +31,12 @@ module.exports = {
       files: '*.json',
       options: {
         parser: 'json'
+      }
+    },
+    {
+      files: '*.php',
+      options: {
+        parser: 'php'
       }
     }
   ]
