@@ -4,7 +4,7 @@
 
 ## 🧭 GUIDING PRINCIPLES
 
-> **📖 Context:** For full platform context, see [SkilledUp.Life Context](./skilleduplife-context.md)
+> **📖 Context:** For full platform, team dynamics, and engineering workflow context, see [SkilledUp.Life Context](./skilleduplife-context.md)
 
 ### 🎯 Why We Implement CI This Way
 
