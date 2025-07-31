@@ -37,31 +37,7 @@ We recommend installing these VS Code extensions:
 - Laravel Blade Snippets
 - PHP Debug
 
-## 📁 Project Structure
 
-```
-app/
-├── Http/
-│   ├── Controllers/    # API Controllers
-│   ├── Middleware/     # Custom middleware
-│   └── Requests/       # Form requests
-├── Models/             # Eloquent models
-├── Services/           # Business logic
-└── Providers/          # Service providers
-
-database/
-├── migrations/         # Database migrations
-├── seeders/           # Database seeders
-└── factories/         # Model factories
-
-tests/
-├── Feature/           # Feature tests
-└── Unit/              # Unit tests
-
-routes/
-├── api.php            # API routes
-└── web.php            # Web routes
-```
 
 ## 🛠️ Available Scripts
 

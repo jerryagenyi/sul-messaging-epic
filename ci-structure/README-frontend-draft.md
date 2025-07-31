@@ -36,43 +36,7 @@ We recommend installing these VS Code extensions:
 - Prettier
 - Vue Language Features (Volar)
 
-## 📁 Project Structure
 
-```
-├── .github/
-│   └── workflows/     # GitHub Actions CI/CD workflows
-├── .vscode/           # VS Code workspace settings
-├── public/            # Static assets and index.html
-│   ├── images/        # Static images
-│   ├── LogoRectangle.svg
-│   └── vite.svg
-├── src/               # Source code
-│   ├── api/           # API integration
-│   ├── assets/        # Static assets (images, styles)
-│   ├── components/    # Vue components
-│   ├── composables/   # Vue composables
-│   ├── constants/     # Application constants
-│   ├── data/          # Data files
-│   ├── helper/        # Helper functions
-│   ├── layouts/       # Layout components
-│   ├── pages/         # Page components
-│   ├── routes/        # Route definitions
-│   ├── store/         # State management
-│   ├── styles/        # CSS/SCSS files
-│   ├── tailwind-theme-objects/  # Tailwind theme objects
-│   ├── ui-kit/        # UI component library
-│   ├── utils/         # Utility functions
-│   ├── App.vue        # Main app component
-│   ├── main.js        # Application entry point
-│   └── style.css      # Global styles
-├── .gitignore         # Git ignore rules
-├── .prettierrc.json   # Prettier configuration
-├── index.html         # Main HTML template
-├── package.json       # Dependencies and scripts
-├── postcss.config.js  # PostCSS configuration
-├── tailwind.config.js # Tailwind CSS configuration
-└── vite.config.js     # Vite build configuration
-```
 
 ## 🛠️ Available Scripts
 
