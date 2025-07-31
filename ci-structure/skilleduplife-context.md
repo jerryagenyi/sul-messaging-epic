@@ -2,6 +2,16 @@
 
 SkilledUp.Life is a global digital volunteering platform that enables individuals to gain real-life work experience while helping startups grow.
 
+## 🚀 Platform Version 2
+
+We are currently building **Version 2** of our platform:
+- **Version 1 (Production)**: www.skilledup.life
+- **Version 2 (Development)**: v2.skilledup.life
+- **Architecture**: Frontend (Vue.js) + Backend (Laravel) connected via API
+- **Repository Structure**:
+  - Frontend: https://github.com/skilleduplife/frontend
+  - Backend: https://github.com/skilleduplife/backend
+
 ## 🎯 Mission
 
 To bridge the gap between education and real-world experience by connecting volunteers with meaningful opportunities while helping startups grow.
