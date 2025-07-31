@@ -35,8 +35,10 @@ jobs:
       - name: Check Prettier formatting
         run: npm run format
 
-      - name: Show unformatted files
-        run: npm run format:check || true
+      - name: Show unformatted files (if any)
+        run: |
+          echo "Checking for unformatted files..."
+          npm run format:check || echo "Some files need formatting - check locally with 'npm run format:fix'"
 
   test:
     name: Unit Tests
@@ -57,6 +59,9 @@ jobs:
 
       - name: Run unit tests
         run: npm run test:unit
+        # Note: This assumes you have 'test:unit' script in package.json
+        # If using Jest directly: npm run test
+        # If using Vitest: npm run test
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v3
@@ -88,6 +93,9 @@ jobs:
 
       - name: Run E2E tests
         run: npm run test:e2e
+        # Note: This assumes you have 'test:e2e' script in package.json
+        # For Playwright: npx playwright test
+        # For Selenium: npm run test:e2e (if configured)
 
       - name: Upload E2E test results
         uses: actions/upload-artifact@v3

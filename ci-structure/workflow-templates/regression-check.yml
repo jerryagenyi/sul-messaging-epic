@@ -1,8 +1,8 @@
-# 🧪 SkilledUp Life – Regression Prototype
-# Currently runs on pull_request only
-# No workflow_run chaining is active yet
-# Used by lead developer for smoke validation before enabling CI chaining logic
-# Does NOT block merge if failed
+# 🧪 SkilledUp Life – Regression Testing Workflow
+# This workflow runs regression tests (subset of critical tests)
+# Currently runs on pull_request only (non-blocking)
+# Future: Will run on main branch merges to validate stability
+# Note: Regression tests are the same test types (unit/E2E) but focused on critical paths
 
 name: Regression Check
 
@@ -12,7 +12,8 @@ on:
     types: [ opened, synchronize, reopened ]
 
 jobs:
-  regression-smoke-test:
+  regression-tests:
+    name: Critical Path Regression Tests
     runs-on: ubuntu-latest
     
     steps:
@@ -28,17 +29,17 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    - name: Run smoke tests
+    - name: Run critical unit tests (regression subset)
+      run: npm run test:regression:unit
+      # This runs a subset of unit tests focused on critical business logic
+      
+    - name: Run critical E2E tests (regression subset)
+      run: npm run test:regression:e2e
+      # This runs a subset of E2E tests focused on critical user journeys
+      
+    - name: Report regression status
       run: |
-        echo "🧪 Running regression smoke tests..."
-        echo "This is a prototype workflow for future stability validation"
-        echo "Currently running basic checks to validate core functionality"
-        
-    - name: Report status
-      run: |
-        echo "✅ Regression check completed"
-        echo "📊 This workflow will evolve to include comprehensive stability validation"
-        echo "🔗 Future Plan: This job will only trigger after a PR is merged to main"
-        echo "Triggered by a successful regression test"
-        echo "Implemented using GitHub's workflow_run (push-based) logic"
-        echo "This setup improves stability by preventing flaky code from entering production" 
+        echo "✅ Regression tests completed"
+        echo "📊 These tests validate critical paths haven't been broken"
+        echo "🔗 Future: This will run on main branch merges for stability validation"
+        echo "💡 Regression tests = subset of existing tests (unit/E2E) focused on critical functionality" 

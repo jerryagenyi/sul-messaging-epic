@@ -61,7 +61,8 @@ This section covers setting up the shared configuration files that both frontend
 ├── prettier.base.config.js     # Shared formatting rules
 ├── eslint.vue.config.js        # Vue-specific linting
 ├── eslint.backend.config.js    # Backend-specific linting
-└── jest.vue.config.js          # Vue testing (future use)
+├── jest.vue.config.js          # Vue testing (future use)
+└── playwright.config.js        # E2E testing (Playwright)
 ```
 
 ### 🚀 Quick Shared Setup
@@ -78,7 +79,10 @@ This section covers setting up the shared configuration files that both frontend
    cp ci-structure/ci-shared/eslint.vue.config.js .github/ci-shared/      # Frontend only
    cp ci-structure/ci-shared/eslint.backend.config.js .github/ci-shared/  # Backend only
    cp ci-structure/ci-shared/jest.vue.config.js .github/ci-shared/        # Frontend only
+   cp ci-structure/ci-shared/playwright.config.js .github/ci-shared/      # Frontend only
    ```
+
+> **💡 Note:** If `.prettierrc.json` already exists in the root (like in the frontend repo), update it to extend the shared config instead of creating a new one. This maintains existing functionality while adding the shared structure.
 
 3. **Create local config files that extend shared configs:**
    ```bash
@@ -88,7 +92,8 @@ This section covers setting up the shared configuration files that both frontend
      // Add project-specific overrides here
    }" > .eslintrc.js
    
-   # .prettierrc.json (extends shared config)
+   # Update existing .prettierrc.json to extend shared config
+   # (If .prettierrc.json already exists, update it instead of creating new)
    echo "module.exports = {
      ...require('./.github/ci-shared/prettier.base.config'),
      // Add project-specific overrides here

@@ -32,6 +32,8 @@ jobs:
 
       - name: Run PHP_CodeSniffer
         run: vendor/bin/phpcs --standard=PSR12 app/ tests/
+        # Note: Requires phpcs to be installed via composer
+        # Alternative: Use Laravel Pint for formatting checks
 
       - name: Run PHPStan static analysis
         run: vendor/bin/phpstan analyse app/ --level=5
@@ -75,6 +77,8 @@ jobs:
 
       - name: Run tests with coverage
         run: php artisan test --coverage --min=80
+        # Note: Requires Xdebug for coverage reporting
+        # Alternative: php artisan test (without coverage)
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v3
