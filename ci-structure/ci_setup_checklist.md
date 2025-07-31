@@ -85,7 +85,7 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
 2. **Copy shared config files:**
    ```bash
    # From this staging repo to your production repo
-   cp ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/
+   cp ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/prettier.frontend.config.js
    cp ci-structure/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint-config/      # Frontend only
    cp ci-structure/ci-shared/eslint-config/eslint.backend.config.js .github/ci-shared/eslint-config/  # Backend only
    cp ci-structure/ci-shared/test-config/jest.vue.config.js .github/ci-shared/test-config/        # Frontend only
@@ -105,7 +105,7 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
    # Update existing .prettierrc.json to extend shared config
    # (If .prettierrc.json already exists, update it instead of creating new)
    echo "module.exports = {
-     ...require('./.github/ci-shared/prettier-config/prettier.shared.config'),
+     ...require('./.github/ci-shared/prettier-config/prettier.frontend.config'),
      // Add project-specific overrides here
    }" > .prettierrc.json
    ```
@@ -122,7 +122,7 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
 
 ### 📁 New Files & Folders to Create
 - `.github/workflows/ci-frontend.yml` - GitHub Actions workflow
-- `.github/ci-shared/prettier-config/prettier.shared.config.js` - Shared Prettier config
+- `.github/ci-shared/prettier-config/prettier.frontend.config.js` - Frontend Prettier config
 - `.github/ci-shared/eslint-config/eslint.vue.config.js` - Shared ESLint config
 - `.github/ci-shared/test-config/jest.vue.config.js` - Shared Jest config (future use)
 - `.eslintrc.js` - ESLint configuration (extends shared config)
@@ -175,7 +175,7 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
 
 ### 📁 New Files & Folders to Create
 - `.github/workflows/ci-backend.yml` - GitHub Actions workflow
-- `.github/ci-shared/prettier-config/prettier.shared.config.js` - Shared Prettier config
+- `.github/ci-shared/prettier-config/prettier.backend.config.js` - Backend Prettier config
 - `.github/ci-shared/eslint-config/eslint.backend.config.js` - Shared ESLint config
 - `phpstan.neon` - PHPStan configuration
 - `tests/Feature/` - Feature test directory

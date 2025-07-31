@@ -6,7 +6,7 @@
 
 ### 📁 New Files & Folders to Create
 - `.github/workflows/ci-frontend.yml` - GitHub Actions workflow
-- `.github/ci-shared/prettier-config/prettier.shared.config.js` - Shared Prettier config
+- `.github/ci-shared/prettier-config/prettier.frontend.config.js` - Frontend Prettier config
 - `.github/ci-shared/eslint-config/eslint.vue.config.js` - Shared ESLint config
 - `.github/ci-shared/test-config/jest.vue.config.js` - Shared Jest config (future use)
 - `.eslintrc.js` - ESLint configuration (extends shared config)
@@ -32,7 +32,7 @@
 3. **Copy config files:**
    ```bash
    cp ci-structure/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint-config/eslint.vue.config.js
-   cp ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/prettier.shared.config.js
+   cp ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/prettier.frontend.config.js
    cp ci-structure/ci-shared/test-config/jest.vue.config.js .github/ci-shared/test-config/jest.vue.config.js
    cp ci-structure/ci-shared/test-config/playwright.config.js .github/ci-shared/test-config/playwright.config.js
    ```

@@ -18,7 +18,10 @@ module.exports = {
                 'no-console': 'warn',
                 'no-unused-vars': 'warn',
                 'no-undef': 'error',
-                'no-debugger': 'error', // Prevent server crashes
+                'no-debugger': 'error', // Prevents server crashes
+                'prefer-const': 'error',
+                'no-var': 'error',
+                'eqeqeq': 'error',
 
                 // Vue-specific rules
                 'vue/no-mutating-props': 'error',
@@ -26,16 +29,13 @@ module.exports = {
                 'vue/component-name-in-template-casing': ['error', 'PascalCase'],
                 'vue/multi-word-component-names': 'off',
                 'vue/valid-template-root': 'error',
-                'vue/no-unused-components': 'warn', // Vue 3 best practice
-                'vue/require-explicit-emits': 'warn', // Vue 3 composition API
-
-                // Best practices
-                'prefer-const': 'error',
-                'no-var': 'error',
-                'eqeqeq': 'error'
+                'vue/no-unused-components': 'warn', // Catches unused components
+                'vue/require-explicit-emits': 'error', // Vue 3 composition API support
+                'vue/no-v-html': 'warn' // Prevents XSS risks
               },
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module'
   }
+  // No specific Tailwind rule needed; classes are CSS and ignored by ESLint
 }; 

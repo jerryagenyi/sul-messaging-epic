@@ -8,7 +8,7 @@ Files follow the pattern: `tool.module.config.js`
 
 Examples:
 - `eslint.vue.config.js` – Vue + ESLint ruleset
-- `prettier.shared.config.js` – Shared Prettier formatting
+- `prettier.base.config.js` – Base Prettier template (copy to repo-specific versions)
 - `jest.vue.config.js` – (Future) Vue unit testing
 
 ## 🧪 Future: Unit Testing Presets
@@ -36,10 +36,27 @@ This folder is optimized to teach and scale:
 
 ## 💡 Example Usage
 
+### Frontend (.eslintrc.js):
 ```js
 module.exports = {
   ...require('./.github/ci-shared/eslint-config/eslint.vue.config'),
   // Optional overrides here
+};
+```
+
+### Frontend (.prettierrc.js):
+```js
+module.exports = {
+  ...require('./.github/ci-shared/prettier-config/prettier.frontend.config'),
+  // Vue-specific overrides here
+};
+```
+
+### Backend (.prettierrc.js):
+```js
+module.exports = {
+  ...require('./.github/ci-shared/prettier-config/prettier.backend.config'),
+  // PHP/Laravel-specific overrides here
 };
 ```
 
@@ -51,7 +68,7 @@ ci-structure/ci-shared/          # Staging repo structure
 │   ├── eslint.vue.config.js
 │   └── eslint.backend.config.js
 ├── prettier-config/
-│   └── prettier.shared.config.js
+│   └── prettier.base.config.js
 └── test-config/
     └── jest.vue.config.js         # For future use
 

@@ -33,7 +33,8 @@ To:
 |-----------------------------|-------------------------------------------------------------------------------------|
 | eslint.vue.config.js        | frontend/.github/ci-shared/eslint-config/eslint.vue.config.js                      |
 | eslint.backend.config.js    | backend/.github/ci-shared/eslint-config/eslint.backend.config.js                   |
-| prettier.shared.config.js     | frontend/.github/ci-shared/prettier-config/prettier.shared.config.js (also backend)  |
+| prettier.base.config.js       | frontend/.github/ci-shared/prettier-config/prettier.frontend.config.js               |
+| prettier.base.config.js       | backend/.github/ci-shared/prettier-config/prettier.backend.config.js                 |
 | jest.vue.config.js          | frontend/.github/ci-shared/test-config/jest.vue.config.js (future use)             |
 
 ---
@@ -57,10 +58,19 @@ module.exports = {
 
 Use this import syntax:
 
+### Frontend:
 ```js
 module.exports = {
-  ...require('./.github/ci-shared/prettier-config/prettier.shared.config'),
-  // Project-specific overrides here
+  ...require('./.github/ci-shared/prettier-config/prettier.frontend.config'),
+  // Vue-specific overrides here
+}
+```
+
+### Backend:
+```js
+module.exports = {
+  ...require('./.github/ci-shared/prettier-config/prettier.backend.config'),
+  // PHP/Laravel-specific overrides here
 }
 ```
 
@@ -109,7 +119,7 @@ mkdir -p .github/ci-shared/{eslint-config,prettier-config,test-config}
 
 # Copy config files (adjust paths as needed)
 cp ../../skilleduplife-ci/ci-structure/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint-config/
-cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/prettier.frontend.config.js
 cp ../../skilleduplife-ci/ci-structure/ci-shared/test-config/jest.vue.config.js .github/ci-shared/test-config/
 
 # Update .eslintrc.js
@@ -126,7 +136,7 @@ mkdir -p .github/ci-shared/{eslint-config,prettier-config}
 
 # Copy config files
 cp ../../skilleduplife-ci/ci-structure/ci-shared/eslint-config/eslint.backend.config.js .github/ci-shared/eslint-config/
-cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/prettier.backend.config.js
 ```
 
 ---
