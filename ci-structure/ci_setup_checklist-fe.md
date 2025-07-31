@@ -184,6 +184,8 @@ git push origin feature/your-feature-name
 - [ ] Ask PO to enable status check for:
   - `CI Pipeline / Lint Frontend`
 - [ ] Path: GitHub → Settings → Branches → Protection Rules
+- [ ] **Important**: During trial phase, CI uses warnings (not errors) to avoid blocking PRs
+- [ ] **Note**: Only critical rules (like `no-debugger`) will block merges during testing
 
 ## ✅ 8. Prepare Test Files
 

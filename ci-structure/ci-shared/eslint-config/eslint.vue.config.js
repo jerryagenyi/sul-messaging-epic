@@ -13,26 +13,26 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'prettier'
   ],
-                rules: {
-                // Code quality rules
-                'no-console': 'warn',
-                'no-unused-vars': 'warn',
-                'no-undef': 'error',
-                'no-debugger': 'error', // Prevents server crashes
-                'prefer-const': 'error',
-                'no-var': 'error',
-                'eqeqeq': 'error',
+  rules: {
+    // Code quality rules - Using warnings to avoid blocking PRs during trial
+    'no-console': 'warn',
+    'no-unused-vars': 'warn',
+    'no-undef': 'warn', // Changed from 'error' to 'warn' to avoid blocking PRs
+    'no-debugger': 'error', // Keep as error - prevents server crashes
+    'prefer-const': 'warn', // Changed from 'error' to 'warn'
+    'no-var': 'warn', // Changed from 'error' to 'warn'
+    'eqeqeq': 'warn', // Changed from 'error' to 'warn'
 
-                // Vue-specific rules
-                'vue/no-mutating-props': 'error',
-                'vue/require-default-prop': 'warn',
-                'vue/component-name-in-template-casing': ['error', 'PascalCase'],
-                'vue/multi-word-component-names': 'off',
-                'vue/valid-template-root': 'error',
-                'vue/no-unused-components': 'warn', // Catches unused components
-                'vue/require-explicit-emits': 'error', // Vue 3 composition API support
-                'vue/no-v-html': 'warn' // Prevents XSS risks
-              },
+    // Vue-specific rules - Using warnings to avoid blocking PRs during trial
+    'vue/no-mutating-props': 'error', // Keep as error - critical Vue rule
+    'vue/require-default-prop': 'warn',
+    'vue/component-name-in-template-casing': 'warn', // Changed from 'error' to 'warn'
+    'vue/multi-word-component-names': 'off',
+    'vue/valid-template-root': 'error', // Keep as error - critical Vue rule
+    'vue/no-unused-components': 'warn',
+    'vue/require-explicit-emits': 'warn', // Changed from 'error' to 'warn'
+    'vue/no-v-html': 'warn'
+  },
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module'
