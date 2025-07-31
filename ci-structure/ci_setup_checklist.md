@@ -4,6 +4,8 @@
 
 ## 🧭 GUIDING PRINCIPLES
 
+> **📖 Context:** For full platform context, see [SkilledUp.Life Context](./skilleduplife-context.md)
+
 ### 🎯 Why We Implement CI This Way
 
 **Teaching vs Protecting Codebase:**
@@ -43,6 +45,59 @@ Auto-fixing in CI creates Git discrepancies. Developers should fix **locally**, 
 📋 **README Drafts:** 
 - Frontend: [`ci-structure/README-frontend-draft.md`](./README-frontend-draft.md)
 - Backend: [`ci-structure/README-backend-draft.md`](./README-backend-draft.md)
+
+---
+
+## 📦 Shared Configuration Setup
+
+> **📋 Detailed Guide:** [CI Shared Config Setup Checklist](./ci-shared/ci_shared_setup_checklist.md)
+
+### 🎯 Purpose
+This section covers setting up the shared configuration files that both frontend and backend repositories will use. These configs ensure consistency across all SkilledUp.Life projects.
+
+### 📁 Shared Files Structure
+```
+.github/ci-shared/
+├── prettier.base.config.js     # Shared formatting rules
+├── eslint.vue.config.js        # Vue-specific linting
+├── eslint.backend.config.js    # Backend-specific linting
+└── jest.vue.config.js          # Vue testing (future use)
+```
+
+### 🚀 Quick Shared Setup
+
+1. **Create the shared folder structure:**
+   ```bash
+   mkdir -p .github/ci-shared/
+   ```
+
+2. **Copy shared config files:**
+   ```bash
+   # From this staging repo to your production repo
+   cp ci-structure/ci-shared/prettier.base.config.js .github/ci-shared/
+   cp ci-structure/ci-shared/eslint.vue.config.js .github/ci-shared/      # Frontend only
+   cp ci-structure/ci-shared/eslint.backend.config.js .github/ci-shared/  # Backend only
+   cp ci-structure/ci-shared/jest.vue.config.js .github/ci-shared/        # Frontend only
+   ```
+
+3. **Create local config files that extend shared configs:**
+   ```bash
+   # .eslintrc.js (extends shared config)
+   echo "module.exports = {
+     ...require('./.github/ci-shared/eslint.vue.config'),
+     // Add project-specific overrides here
+   }" > .eslintrc.js
+   
+   # .prettierrc.json (extends shared config)
+   echo "module.exports = {
+     ...require('./.github/ci-shared/prettier.base.config'),
+     // Add project-specific overrides here
+   }" > .prettierrc.json
+   ```
+
+### 📚 Shared Config Documentation
+- **Shared Config README:** [ci-shared/README.md](./ci-shared/README.md)
+- **Detailed Setup Guide:** [ci-shared/ci_shared_setup_checklist.md](./ci-shared/ci_shared_setup_checklist.md)
 
 ---
 

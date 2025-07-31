@@ -13,11 +13,8 @@ This folder contains the standardized CI/CD configurations, workflows, and setup
 - `ci_setup_checklist.md` – Unified CI setup checklist with shared principles
 - `ci_setup_checklist-fe.md` – Detailed frontend (Vue) CI setup instructions
 - `ci_setup_checklist-be.md` – Detailed backend (Laravel) CI setup instructions
+- `ci-shared/` – Shared configuration files and setup guides
 - `workflow-templates/` – GitHub Actions workflows for Vue & Laravel
-- `eslint-config/` – ESLint rules and configurations
-- `prettier-config/` – Prettier formatting standards and configurations
-- `ci-shared/` – Reusable configuration files for production repos
-- `ci_shared_setup_checklist.md` – Step-by-step implementation guide
 - `README.md` – This document
 
 ---
