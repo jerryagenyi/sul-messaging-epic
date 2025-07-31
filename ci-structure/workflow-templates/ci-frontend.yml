@@ -12,9 +12,9 @@ name: CI Pipeline - Frontend
 
 on:
   pull_request:
-    branches: [main, dev]
+    branches: [main, develop]
   push:
-    branches: [main, dev]
+    branches: [main, develop]
 
 jobs:
   lint:

@@ -15,30 +15,39 @@
 ### 🔧 Files to Modify
 - `composer.json` - Add lint/format/test scripts
 
-**For developers who want to get CI running in 5 minutes:**
+**Overview of Steps to Implement:**
 
-1. **Copy workflow template:**
+1. **Ensure you are on staging branch:**
+   ```bash
+   git checkout ci-implementation
+   # If branch doesn't exist, create it:
+   # git checkout main
+   # git pull origin main
+   # git checkout -b ci-implementation
+   ```
+
+2. **Copy workflow template:**
    ```bash
    cp ci-structure/workflow-templates/ci-backend.yml .github/workflows/
    ```
 
-2. **Install PHP dependencies:**
+3. **Install PHP dependencies:**
    ```bash
    composer install
    ```
 
-3. **Setup Laravel environment:**
+4. **Setup Laravel environment:**
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
-4. **Run tests locally to verify:**
+5. **Run tests locally to verify:**
    ```bash
    php artisan test
    ```
 
-5. **Create PR → see CI in action!**
+6. **Create PR → see CI in action!**
 
 ---
 
@@ -46,7 +55,18 @@
 
 ---
 
-## ✅ 1. Inspect for Composer or NPM
+## ✅ 1. Create Staging Branch
+
+- [ ] Create staging branch for safe CI implementation:
+  ```bash
+  git checkout main
+  git pull origin main
+  git checkout -b ci-implementation
+  ```
+- [ ] This allows testing CI without affecting main branch
+- [ ] All subsequent steps will be implemented on this branch
+
+## ✅ 2. Inspect for Composer or NPM
 
 - [ ] Check if `composer.json` and `composer.lock` exist
 - [ ] If not:
@@ -55,7 +75,7 @@
 
 - [ ] Also check if `package.json` is used (optional — for frontend assets)
 
-## ✅ 2. Setup Workflow
+## ✅ 3. Setup Workflow
 
 - [ ] Path must be:
   ```
@@ -65,17 +85,51 @@
   - Lint check (if PHP linter installed)
   - Unit test placeholder (Laravel)
 
-## ✅ 3. Trigger the Workflow
+## ✅ 4. Trigger the Workflow
 
-- [ ] Open PR from any branch to `dev` or `main`
+- [ ] Create a test sub-branch from `ci-implementation`:
+  ```bash
+  git checkout ci-implementation
+  git checkout -b test/ci-backend-workflow
+  # Make a small change (e.g., add a comment to a PHP file)
+  git add .
+  git commit -m "test: trigger backend CI workflow"
+  git push origin test/ci-backend-workflow
+  ```
+- [ ] Open PR from `test/ci-backend-workflow` → `ci-implementation`
 - [ ] Confirm `CI Pipeline / Backend Tests` (or similar name) shows up in GitHub Checks
+- [ ] Verify workflow passes and merge the test PR
 
-## ✅ 4. Enable Status Checks (Admin Only)
+### 📋 Sub-Branch Strategy for Testing
+
+**For testing features during CI implementation:**
+```bash
+# Always create sub-branches from ci-implementation
+git checkout ci-implementation
+git checkout -b feature/your-backend-feature
+
+# Work on your feature
+# Commit and push
+git add .
+git commit -m "feat: your backend feature description"
+git push origin feature/your-backend-feature
+
+# Create PR: feature/your-backend-feature → ci-implementation
+# This triggers CI and tests your changes safely
+```
+
+**Key Points:**
+- ✅ **Target**: All PRs should target `ci-implementation` (not `develop` or `main`)
+- ✅ **Source**: Create feature branches from `ci-implementation`
+- ✅ **Testing**: CI runs on every PR to `ci-implementation`
+- ✅ **Safety**: No risk to production code during testing
+
+## ✅ 5. Enable Status Checks (Admin Only)
 
 - [ ] Ask PO to enable status checks:
   - `CI Pipeline / Backend Tests`
 
-## ✅ 5. Prepare Tests
+## ✅ 6. Prepare Tests
 
 - [ ] Ensure Laravel tests are in:
   ```
@@ -87,7 +141,7 @@
   ```
 - [ ] Run tests locally to verify setup
 
-## ✅ 6. PHP Linting Setup
+## ✅ 7. PHP Linting Setup
 
 - [ ] Install PHP linting tools:
   ```bash
@@ -117,7 +171,7 @@
       - app/Console/Kernel.php
   ```
 
-## ✅ 7. Laravel-Specific Configuration
+## ✅ 8. Laravel-Specific Configuration
 
 - [ ] Ensure `.env.testing` exists for test environment
 - [ ] Configure database for testing:
@@ -127,7 +181,7 @@
 
 - [ ] Add test database configuration to CI workflow
 
-## ✅ 8. Enhanced CI Configuration
+## ✅ 9. Enhanced CI Configuration
 
 - [ ] Update CI config to include detailed checking:
 
@@ -142,7 +196,7 @@
     run: composer run test
   ```
 
-## ✅ 9. Rollback Strategy
+## ✅ 10. Rollback Strategy
 
 **Before implementing CI changes:**
 - [ ] Document current working state before CI changes
@@ -156,13 +210,46 @@
 - Only merge to main after thorough testing
 - This allows full testing without affecting production development
 
-## ✅ 10. Environment-Specific Configs
+### 📋 Syncing Strategy for ci-implementation
+
+**Best Approach: Regular merges from develop to ci-implementation**
+
+```bash
+# Option 1: Daily sync (recommended)
+git checkout ci-implementation
+git merge develop
+# Resolve any conflicts and push
+git push origin ci-implementation
+
+# Option 2: Weekly sync
+git checkout ci-implementation
+git merge develop
+git push origin ci-implementation
+
+# Option 3: Before major feature work
+git checkout ci-implementation
+git merge develop
+git push origin ci-implementation
+```
+
+**Why This Approach:**
+- ✅ **Keeps ci-implementation current** with other developers' work
+- ✅ **Prevents massive conflicts** when merging to develop later
+- ✅ **Tests CI with real code changes** from the team
+- ✅ **Maintains team collaboration** during CI testing phase
+
+**Recommended Frequency:**
+- **Daily**: If team is very active
+- **Every 2-3 days**: Standard approach
+- **Weekly**: If team is small or changes are minimal
+
+## ✅ 11. Environment-Specific Configs
 
 **Current Implementation:**
 - Single CI workflow for PRs from developers
 - Focus on code quality and testing
 
-**Future Implementation (Phase 3):**
+**Future Implementation (Advanced):**
 - **Development PRs:** Current workflow (linting, formatting, unit tests)
 - **Production Merges:** Enhanced workflow with integration testing
 - **Deployment Pipeline:** Full API testing and security scans
@@ -172,9 +259,9 @@
 2. Later add conditional steps based on target branch
 3. Implement integration testing for main branch merges
 
-## ✅ 11. Future Enhancements (Optional)
+## ✅ 12. Future Enhancements (Optional)
 
-### 🚀 Phase 2: Advanced Testing
+### 🚀 Advanced: Testing Integration
 - [ ] Add API testing with Pest or PHPUnit
 - [ ] Integrate database testing
 - [ ] Add test coverage reporting

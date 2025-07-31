@@ -62,7 +62,7 @@ This section covers setting up the shared configuration files that both frontend
 │   ├── eslint.vue.config.js        # Vue-specific linting
 │   └── eslint.backend.config.js    # Backend-specific linting
 ├── prettier-config/
-│   └── prettier.shared.config.js   # Shared formatting rules
+│   └── prettier.base.config.js     # Base formatting rules (template)
 └── test-config/
     ├── jest.vue.config.js          # Vue testing (future use)
     └── playwright.config.js        # E2E testing (Playwright)
@@ -77,12 +77,19 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
 
 ### 🚀 Quick Shared Setup
 
-1. **Create the shared folder structure:**
+1. **Create staging branch (if not already done):**
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b ci-implementation
+   ```
+
+2. **Create the shared folder structure:**
    ```bash
    mkdir -p .github/ci-shared/
    ```
 
-2. **Copy shared config files:**
+3. **Copy shared config files:**
    ```bash
    # From this staging repo to your production repo
    cp ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/prettier.frontend.config.js
@@ -133,37 +140,14 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
 ### 🔧 Files to Modify
 - `package.json` - Add lint/format scripts
 
-**For developers who want to get CI running in 5 minutes:**
+**Quick Implementation Steps:**
 
-1. **Copy workflow template:**
-   ```bash
-   cp ci-structure/workflow-templates/ci-frontend.yml .github/workflows/
-   ```
-
-2. **Install ESLint:**
-   ```bash
-   npm install --save-dev eslint eslint-plugin-vue @vue/eslint-config-prettier prettier
-   ```
-
-3. **Copy config files:**
-   ```bash
-   cp ci-structure/ci-shared/eslint.vue.config.js .github/ci-shared/eslint.vue.config.js
-   cp ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/prettier.shared.config.js
-   cp ci-structure/ci-shared/jest.vue.config.js .github/ci-shared/jest.vue.config.js
-   ```
-
-4. **Add scripts to package.json:**
-   ```json
-   {
-     "scripts": {
-       "lint": "eslint src/ tests/ *.js --ext .js,.vue",
-       "format": "prettier --check src/ tests/ *.js",
-       "format:fix": "prettier --write src/ tests/ *.js"
-     }
-   }
-   ```
-
-5. **Create PR → see CI in action!**
+1. Ensure you are on staging branch (`ci-implementation`)
+2. Copy workflow template to `.github/workflows/`
+3. Install ESLint and Prettier dependencies
+4. Copy shared config files to `.github/ci-shared/`
+5. Add lint/format scripts to `package.json`
+6. Create PR to test CI workflow
 
 📋 **Detailed Frontend Setup:** [Frontend CI Setup Checklist](./ci_setup_checklist-fe.md)
 
@@ -184,48 +168,42 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
 ### 🔧 Files to Modify
 - `composer.json` - Add lint/format/test scripts
 
-**For developers who want to get CI running in 5 minutes:**
+**Quick Implementation Steps:**
 
-1. **Copy workflow template:**
-   ```bash
-   cp ci-structure/workflow-templates/ci-backend.yml .github/workflows/
-   ```
-
-2. **Install PHP dependencies:**
-   ```bash
-   composer install
-   ```
-
-3. **Setup Laravel environment:**
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
-
-4. **Run tests locally to verify:**
-   ```bash
-   php artisan test
-   ```
-
-5. **Create PR → see CI in action!**
+1. Ensure you are on staging branch (`ci-implementation`)
+2. Copy workflow template to `.github/workflows/`
+3. Install PHP dependencies with Composer
+4. Setup Laravel environment (env, key generation)
+5. Run tests locally to verify setup
+6. Create PR to test CI workflow
 
 📋 **Detailed Backend Setup:** [Backend CI Setup Checklist](./ci_setup_checklist-be.md)
 
 ---
 
-## 🛡️ Rollback Strategy
+## 🛡️ Staging Branch Strategy
 
-**Before implementing CI changes:**
-- [ ] Document current working state before CI changes
-- [ ] Create a feature branch for CI implementation
-- [ ] Test CI on the feature branch first
-- [ ] Have a "disable CI" option for emergency fixes
+### 🎯 Implementation Approach
+**📋 Detailed Strategy:** See [Frontend CI Setup Checklist - Staging Branch Strategy](./ci_setup_checklist-fe.md#-13-staging-branch-implementation-strategy)
 
-**Branch-based testing approach:**
-- Create a `ci-implementation` branch
-- Test the entire workflow including PRs on this branch
-- Only merge to main after thorough testing
-- This allows full testing without affecting production development
+**Quick Overview:**
+- **Phase 1**: Create `ci-implementation` branch, implement CI
+- **Phase 2**: Single developer tests the workflow
+- **Phase 3**: Merge to main after validation
+
+**Key Benefits:**
+- Safe testing without affecting main branch
+- Real environment (APIs, databases work normally)
+- Easy rollback if issues arise
+- No repository duplication needed
+
+### 🔄 Rollback Strategy
+**📋 Detailed Rollback:** See [Frontend CI Setup Checklist - Rollback Strategy](./ci_setup_checklist-fe.md#-rollback-strategy)
+
+**Quick Options:**
+- Fix issues on staging branch
+- Start fresh with new branch
+- Abandon and return to main
 
 ---
 
@@ -235,7 +213,7 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
 - Single CI workflow for PRs from developers
 - Focus on code quality and formatting checks
 
-**Future Implementation (Phase 3):**
+**Future Implementation (Advanced):**
 - **Development PRs:** Current workflow (linting, formatting, unit tests)
 - **Production Merges:** Enhanced workflow with regression testing
 - **Deployment Pipeline:** Full E2E testing and security scans

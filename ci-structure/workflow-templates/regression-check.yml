@@ -8,7 +8,7 @@ name: Regression Check
 
 on:
   pull_request:
-    branches: [ main, dev ]
+    branches: [ main, develop ]
     types: [ opened, synchronize, reopened ]
 
 jobs:
