@@ -8,7 +8,7 @@ Files follow the pattern: `tool.module.config.js`
 
 Examples:
 - `eslint.vue.config.js` – Vue + ESLint ruleset
-- `prettier.base.config.js` – Shared Prettier formatting
+- `prettier.shared.config.js` – Shared Prettier formatting
 - `jest.vue.config.js` – (Future) Vue unit testing
 
 ## 🧪 Future: Unit Testing Presets
@@ -51,7 +51,7 @@ ci-structure/ci-shared/          # Staging repo structure
 │   ├── eslint.vue.config.js
 │   └── eslint.backend.config.js
 ├── prettier-config/
-│   └── prettier.base.config.js
+│   └── prettier.shared.config.js
 └── test-config/
     └── jest.vue.config.js         # For future use
 

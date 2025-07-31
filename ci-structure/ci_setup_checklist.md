@@ -68,6 +68,13 @@ This section covers setting up the shared configuration files that both frontend
     └── playwright.config.js        # E2E testing (Playwright)
 ```
 
+### 🛠️ IDE Setup (VS Code/Cursor)
+Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
+- Auto-formatting on save
+- ESLint auto-fix on save
+- Vue file support
+- Prettier integration
+
 ### 🚀 Quick Shared Setup
 
 1. **Create the shared folder structure:**
@@ -141,7 +148,7 @@ This section covers setting up the shared configuration files that both frontend
 3. **Copy config files:**
    ```bash
    cp ci-structure/ci-shared/eslint.vue.config.js .github/ci-shared/eslint.vue.config.js
-   cp ci-structure/ci-shared/prettier.base.config.js .github/ci-shared/prettier.base.config.js
+   cp ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/prettier.shared.config.js
    cp ci-structure/ci-shared/jest.vue.config.js .github/ci-shared/jest.vue.config.js
    ```
 

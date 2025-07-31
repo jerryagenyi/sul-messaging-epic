@@ -33,7 +33,7 @@ To:
 |-----------------------------|-------------------------------------------------------------------------------------|
 | eslint.vue.config.js        | frontend/.github/ci-shared/eslint-config/eslint.vue.config.js                      |
 | eslint.backend.config.js    | backend/.github/ci-shared/eslint-config/eslint.backend.config.js                   |
-| prettier.base.config.js     | frontend/.github/ci-shared/prettier-config/prettier.base.config.js (also backend)  |
+| prettier.shared.config.js     | frontend/.github/ci-shared/prettier-config/prettier.shared.config.js (also backend)  |
 | jest.vue.config.js          | frontend/.github/ci-shared/test-config/jest.vue.config.js (future use)             |
 
 ---
@@ -59,7 +59,7 @@ Use this import syntax:
 
 ```js
 module.exports = {
-  ...require('./.github/ci-shared/prettier-config/prettier.base.config'),
+  ...require('./.github/ci-shared/prettier-config/prettier.shared.config'),
   // Project-specific overrides here
 }
 ```
@@ -109,7 +109,7 @@ mkdir -p .github/ci-shared/{eslint-config,prettier-config,test-config}
 
 # Copy config files (adjust paths as needed)
 cp ../../skilleduplife-ci/ci-structure/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint-config/
-cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/
 cp ../../skilleduplife-ci/ci-structure/ci-shared/test-config/jest.vue.config.js .github/ci-shared/test-config/
 
 # Update .eslintrc.js
@@ -126,7 +126,7 @@ mkdir -p .github/ci-shared/{eslint-config,prettier-config}
 
 # Copy config files
 cp ../../skilleduplife-ci/ci-structure/ci-shared/eslint-config/eslint.backend.config.js .github/ci-shared/eslint-config/
-cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/
+cp ../../skilleduplife-ci/ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/
 ```
 
 ---

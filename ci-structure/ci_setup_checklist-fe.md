@@ -175,7 +175,7 @@ To fix: Run `npm run lint`, follow the hints, and recommit changes.
 
 **Use the provided config files:**
 - ESLint config: [`ci-structure/eslint-config/.eslintrc.js`](../eslint-config/.eslintrc.js)
-- Prettier config: [`ci-structure/ci-shared/prettier-config/prettier.base.config.js`](../ci-shared/prettier-config/prettier.base.config.js)
+- Prettier config: [`ci-structure/ci-shared/prettier-config/prettier.shared.config.js`](../ci-shared/prettier-config/prettier.shared.config.js)
 
 These rules encourage readable, maintainable Vue code without frustrating devs.
 

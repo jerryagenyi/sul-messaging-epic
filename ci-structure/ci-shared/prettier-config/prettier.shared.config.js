@@ -5,15 +5,15 @@ module.exports = {
   // Schema reference for IDE support
   $schema: 'https://json.schemastore.org/prettierrc',
   
-  // Basic formatting rules (aligned with your current config)
-  semi: false,
-  singleQuote: true,
-  printWidth: 120,
-  tabWidth: 4,
-  trailingComma: 'none',
-  useTabs: false,
-  bracketSpacing: true,
-  arrowParens: 'avoid',
+                // Basic formatting rules (aligned with your current config)
+              semi: false,
+              singleQuote: true,
+              printWidth: 120,
+              tabWidth: 4,
+              trailingComma: 'none',
+              useTabs: false,
+              bracketSpacing: true,
+              arrowParens: 'avoid', // Supports Vue 3 composition API arrow functions
   
   // HTML/Vue specific settings
   htmlWhitespaceSensitivity: 'ignore',
