@@ -1,5 +1,5 @@
 // 🎨 SkilledUp Life Prettier Config – Shared Format Rules
-// Copy this file to: .github/ci-shared/prettier.base.config.js in frontend/backend repos
+// Copy this file to: .github/ci-shared/prettier-config/prettier.shared.config.js in frontend/backend repos
 
 module.exports = {
   // Schema reference for IDE support

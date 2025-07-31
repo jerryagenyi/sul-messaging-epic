@@ -37,13 +37,18 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Show ESLint fixable issues
+        run: |
+          echo "🔍 Checking for ESLint issues that can be auto-fixed..."
+          npx eslint src/ tests/ *.js --ext .js,.vue --fix --quiet --format compact || echo "⚠️  Some issues need manual fixing - run 'npm run lint:fix' locally"
+
       - name: Check Prettier formatting
         run: npm run format
 
       - name: Show unformatted files (if any)
         run: |
-          echo "Checking for unformatted files..."
-          npm run format:check || echo "Some files need formatting - check locally with 'npm run format:fix'"
+          echo "🎨 Checking for formatting issues..."
+          npm run format:check || echo "⚠️  Some files need formatting - run 'npm run format:fix' locally"
 
   # 🧪 UNIT TESTS - PHASE 2 (COMMENTED OUT FOR NOW)
   # Uncomment this section when you're ready to add unit testing

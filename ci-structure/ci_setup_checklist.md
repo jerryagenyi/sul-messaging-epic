@@ -58,11 +58,14 @@ This section covers setting up the shared configuration files that both frontend
 ### 📁 Shared Files Structure
 ```
 .github/ci-shared/
-├── prettier.base.config.js     # Shared formatting rules
-├── eslint.vue.config.js        # Vue-specific linting
-├── eslint.backend.config.js    # Backend-specific linting
-├── jest.vue.config.js          # Vue testing (future use)
-└── playwright.config.js        # E2E testing (Playwright)
+├── eslint-config/
+│   ├── eslint.vue.config.js        # Vue-specific linting
+│   └── eslint.backend.config.js    # Backend-specific linting
+├── prettier-config/
+│   └── prettier.shared.config.js   # Shared formatting rules
+└── test-config/
+    ├── jest.vue.config.js          # Vue testing (future use)
+    └── playwright.config.js        # E2E testing (Playwright)
 ```
 
 ### 🚀 Quick Shared Setup
@@ -75,11 +78,11 @@ This section covers setting up the shared configuration files that both frontend
 2. **Copy shared config files:**
    ```bash
    # From this staging repo to your production repo
-   cp ci-structure/ci-shared/prettier.base.config.js .github/ci-shared/
-   cp ci-structure/ci-shared/eslint.vue.config.js .github/ci-shared/      # Frontend only
-   cp ci-structure/ci-shared/eslint.backend.config.js .github/ci-shared/  # Backend only
-   cp ci-structure/ci-shared/jest.vue.config.js .github/ci-shared/        # Frontend only
-   cp ci-structure/ci-shared/playwright.config.js .github/ci-shared/      # Frontend only
+   cp ci-structure/ci-shared/prettier-config/prettier.shared.config.js .github/ci-shared/prettier-config/
+   cp ci-structure/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint-config/      # Frontend only
+   cp ci-structure/ci-shared/eslint-config/eslint.backend.config.js .github/ci-shared/eslint-config/  # Backend only
+   cp ci-structure/ci-shared/test-config/jest.vue.config.js .github/ci-shared/test-config/        # Frontend only
+   cp ci-structure/ci-shared/test-config/playwright.config.js .github/ci-shared/test-config/      # Frontend only
    ```
 
 > **💡 Note:** If `.prettierrc.json` already exists in the root (like in the frontend repo), update it to extend the shared config instead of creating a new one. This maintains existing functionality while adding the shared structure.
@@ -95,7 +98,7 @@ This section covers setting up the shared configuration files that both frontend
    # Update existing .prettierrc.json to extend shared config
    # (If .prettierrc.json already exists, update it instead of creating new)
    echo "module.exports = {
-     ...require('./.github/ci-shared/prettier.base.config'),
+     ...require('./.github/ci-shared/prettier-config/prettier.shared.config'),
      // Add project-specific overrides here
    }" > .prettierrc.json
    ```
@@ -112,9 +115,9 @@ This section covers setting up the shared configuration files that both frontend
 
 ### 📁 New Files & Folders to Create
 - `.github/workflows/ci-frontend.yml` - GitHub Actions workflow
-- `.github/ci-shared/prettier.base.config.js` - Shared Prettier config
-- `.github/ci-shared/eslint.vue.config.js` - Shared ESLint config
-- `.github/ci-shared/jest.vue.config.js` - Shared Jest config (future use)
+- `.github/ci-shared/prettier-config/prettier.shared.config.js` - Shared Prettier config
+- `.github/ci-shared/eslint-config/eslint.vue.config.js` - Shared ESLint config
+- `.github/ci-shared/test-config/jest.vue.config.js` - Shared Jest config (future use)
 - `.eslintrc.js` - ESLint configuration (extends shared config)
 - `.prettierrc.json` - Prettier configuration (extends shared config)
 - `tests/unit/` - Unit test directory
@@ -165,8 +168,8 @@ This section covers setting up the shared configuration files that both frontend
 
 ### 📁 New Files & Folders to Create
 - `.github/workflows/ci-backend.yml` - GitHub Actions workflow
-- `.github/ci-shared/prettier.base.config.js` - Shared Prettier config
-- `.github/ci-shared/eslint.backend.config.js` - Shared ESLint config
+- `.github/ci-shared/prettier-config/prettier.shared.config.js` - Shared Prettier config
+- `.github/ci-shared/eslint-config/eslint.backend.config.js` - Shared ESLint config
 - `phpstan.neon` - PHPStan configuration
 - `tests/Feature/` - Feature test directory
 - `tests/Unit/` - Unit test directory

@@ -6,8 +6,8 @@
 
 ### 📁 New Files & Folders to Create
 - `.github/workflows/ci-backend.yml` - GitHub Actions workflow
-- `.github/ci-shared/prettier.base.config.js` - Shared Prettier config
-- `.github/ci-shared/eslint.backend.config.js` - Shared ESLint config
+- `.github/ci-shared/prettier-config/prettier.shared.config.js` - Shared Prettier config
+- `.github/ci-shared/eslint-config/eslint.backend.config.js` - Shared ESLint config
 - `phpstan.neon` - PHPStan configuration
 - `tests/Feature/` - Feature test directory
 - `tests/Unit/` - Unit test directory
