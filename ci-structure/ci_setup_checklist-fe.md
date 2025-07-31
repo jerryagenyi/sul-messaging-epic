@@ -8,6 +8,7 @@
 - `.github/workflows/ci-frontend.yml` - GitHub Actions workflow
 - `.github/ci-shared/prettier.base.config.js` - Shared Prettier config
 - `.github/ci-shared/eslint.vue.config.js` - Shared ESLint config
+- `.github/ci-shared/jest.vue.config.js` - Shared Jest config (future use)
 - `.eslintrc.js` - ESLint configuration (extends shared config)
 - `.prettierrc.json` - Prettier configuration (extends shared config)
 - `tests/unit/` - Unit test directory
@@ -30,8 +31,9 @@
 
 3. **Copy config files:**
    ```bash
-   cp ci-structure/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint.vue.config.js
-   cp ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier.base.config.js
+   cp ci-structure/ci-shared/eslint.vue.config.js .github/ci-shared/eslint.vue.config.js
+   cp ci-structure/ci-shared/prettier.base.config.js .github/ci-shared/prettier.base.config.js
+   cp ci-structure/ci-shared/jest.vue.config.js .github/ci-shared/jest.vue.config.js
    ```
 
 4. **Add scripts to package.json:**
