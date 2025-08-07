@@ -1,0 +1,3 @@
+# This is a placeholder for invalid.txt
+# In the actual frontend repository, this should be a real text file
+# Used for testing file upload validation in E2E tests

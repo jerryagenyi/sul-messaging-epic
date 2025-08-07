@@ -73,8 +73,7 @@ jobs:
   #       run: npm run test:unit
   #       # ⚠️ IMPORTANT: You need to add this script to your package.json first!
   #       # Add this to your package.json "scripts" section:
-  #       # "test:unit": "jest" (if using Jest)
-  #       # "test:unit": "vitest" (if using Vitest)
+  #       # "test:unit": "vitest --config tests/config/vitest.config.js"
   #
   #     - name: Upload coverage reports
   #       uses: codecov/codecov-action@v3
@@ -110,8 +109,7 @@ jobs:
   #       run: npm run test:e2e
   #       # ⚠️ IMPORTANT: You need to add this script to your package.json first!
   #       # Add this to your package.json "scripts" section:
-  #       # "test:e2e": "playwright test" (if using Playwright)
-  #       # "test:e2e": "selenium-webdriver" (if using Selenium)
+  #       # "test:e2e": "playwright test --config tests/config/playwright.config.js"
   #
   #     - name: Upload E2E test results
   #       uses: actions/upload-artifact@v3

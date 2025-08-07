@@ -75,5 +75,5 @@ See [`ci-shared/ci_shared_setup_checklist.md`](./ci-shared/ci_shared_setup_check
 
 ## 👤 Maintainer
 
-Built and curated by [@jerryagenyi](https://github.com/jerryagenyi)  
+Built and curated by [@jerryagenyi](https://github.com/jerryagenyi-sul)  
 Product Lead at SkilledUp.Life

@@ -1,6 +1,6 @@
 # ✅ CI Shared Config Setup Checklist (SkilledUp Life – ESLint/Prettier/Test)
 
-This checklist guides you in setting up shared CI configuration files from staging repo [`skilleduplife-ci`](https://github.com/jerryagenyi/skilleduplife-ci) into the production repositories:
+This checklist guides you in setting up shared CI configuration files from staging repo [`skilleduplife-ci`](https://github.com/jerryagenyi-sul/skilleduplife-ci) into the production repositories:
 
 - **Frontend (Vue):** [`https://github.com/skilleduplife/frontend`](https://github.com/skilleduplife/frontend)
 - **Backend (Laravel):** [`https://github.com/skilleduplife/backend`](https://github.com/skilleduplife/backend)

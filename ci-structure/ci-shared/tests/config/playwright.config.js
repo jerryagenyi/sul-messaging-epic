@@ -1,10 +1,12 @@
 // 🎭 SkilledUp Life Playwright Config – E2E Testing
-// Copy this file to: .github/ci-shared/playwright.config.js in frontend repository
+// Copy this file to: tests/config/playwright.config.js in frontend repository
 // Alternative: If QA team prefers Selenium, use selenium-webdriver instead
 
-module.exports = {
+const { defineConfig, devices } = require('@playwright/test')
+
+module.exports = defineConfig({
   // Test configuration
-  testDir: './tests/e2e',
+  testDir: '../e2e',
   timeout: 30000,
   expect: {
     timeout: 5000
