@@ -8,11 +8,20 @@
 - `.github/workflows/ci-frontend.yml` - GitHub Actions workflow
 - `.github/ci-shared/prettier-config/prettier.frontend.config.js` - Frontend Prettier config
 - `.github/ci-shared/eslint-config/eslint.vue.config.js` - Shared ESLint config
-- `.github/ci-shared/test-config/jest.vue.config.js` - Shared Jest config (future use)
+- `tests/` - Complete test structure
+  - `config/` - All test configurations
+    - `vitest.config.js` - Unit & component testing
+    - `playwright.config.js` - E2E testing
+    - `setup.js` - Test setup and mocks
+  - `e2e/` - End-to-end tests
+    - `critical/` - Critical user flows
+    - `user-journeys/` - Complete user journeys
+  - `components/` - Component tests
+  - `unit/` - Utility & composable tests
+  - `regression/` - Regression snapshots & fixtures
+    - `fixtures/` - Test data and files
 - `.eslintrc.js` - ESLint configuration (extends shared config)
 - `.prettierrc.json` - Prettier configuration (extends shared config)
-- `tests/unit/` - Unit test directory
-- `tests/e2e/` - E2E test directory
 
 ### 🔧 Files to Modify
 - `package.json` - Add lint/format scripts
@@ -42,8 +51,6 @@
    ```bash
    cp ci-structure/ci-shared/eslint-config/eslint.vue.config.js .github/ci-shared/eslint-config/eslint.vue.config.js
    cp ci-structure/ci-shared/prettier-config/prettier.base.config.js .github/ci-shared/prettier-config/prettier.frontend.config.js
-   cp ci-structure/ci-shared/test-config/jest.vue.config.js .github/ci-shared/test-config/jest.vue.config.js
-   cp ci-structure/ci-shared/test-config/playwright.config.js .github/ci-shared/test-config/playwright.config.js
    ```
 
 5. **Add scripts to package.json:**
@@ -189,11 +196,24 @@ git push origin feature/your-feature-name
 
 ## ✅ 8. Prepare Test Files
 
-- [ ] Collect existing Vue unit + E2E tests from devs
-- [ ] Structure:
+- [ ] Create test structure in frontend repo:
+  ```bash
+  mkdir -p tests/{config,e2e/{critical,user-journeys},components,unit,regression/fixtures}
   ```
-  frontend/tests/unit/
-  frontend/tests/e2e/
+- [ ] Structure will be:
+  ```
+  frontend/tests/
+  ├── config/                  # All test configurations
+  │   ├── vitest.config.js     # Unit & component testing
+  │   ├── playwright.config.js # E2E testing
+  │   └── setup.js            # Test setup and mocks
+  ├── e2e/                     # End-to-end tests
+  │   ├── critical/           # Critical user flows
+  │   └── user-journeys/      # Complete user journeys
+  ├── components/              # Component tests
+  ├── unit/                    # Utility & composable tests
+  └── regression/              # Regression snapshots & fixtures
+      └── fixtures/           # Test data and files
   ```
 - [ ] Replace placeholder `echo` in `workflow-templates/ci-frontend.yml` with:
   ```bash

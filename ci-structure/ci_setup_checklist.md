@@ -131,11 +131,20 @@ Copy `.vscode-settings.json` to `.vscode/settings.json` in your project for:
 - `.github/workflows/ci-frontend.yml` - GitHub Actions workflow
 - `.github/ci-shared/prettier-config/prettier.frontend.config.js` - Frontend Prettier config
 - `.github/ci-shared/eslint-config/eslint.vue.config.js` - Shared ESLint config
-- `.github/ci-shared/test-config/jest.vue.config.js` - Shared Jest config (future use)
+- `tests/` - Complete test structure
+  - `config/` - All test configurations
+    - `vitest.config.js` - Unit & component testing
+    - `playwright.config.js` - E2E testing
+    - `setup.js` - Test setup and mocks
+  - `e2e/` - End-to-end tests
+    - `critical/` - Critical user flows
+    - `user-journeys/` - Complete user journeys
+  - `components/` - Component tests
+  - `unit/` - Utility & composable tests
+  - `regression/` - Regression snapshots & fixtures
+    - `fixtures/` - Test data and files
 - `.eslintrc.js` - ESLint configuration (extends shared config)
 - `.prettierrc.json` - Prettier configuration (extends shared config)
-- `tests/unit/` - Unit test directory
-- `tests/e2e/` - E2E test directory
 
 ### 🔧 Files to Modify
 - `package.json` - Add lint/format scripts
